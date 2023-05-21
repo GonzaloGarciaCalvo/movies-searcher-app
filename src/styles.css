@@ -1,0 +1,21 @@
+html {
+  background-color: rgb(22, 21, 21);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: burlywood;
+}
+footer {
+  position: absolute; bottom: 0;
+}

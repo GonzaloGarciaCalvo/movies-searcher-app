@@ -1,25 +1,24 @@
 import React, { useState } from 'react'
-import swal from 'sweetalert';
+import swal from 'sweetalert'
 import { useHistory} from 'react-router-dom'
 import axios from 'axios'
-import Header from './Header';
+import { Redirect} from 'react-router-dom'
 
 
 function Login() {
   //const [isLogged, setIsLoged] = useState(false)
+  const history = useHistory()
+  const token = localStorage.moviesSearcherToken
   const emailRegEx = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm) ;
   const passwordRegEx = new RegExp( /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);
-  const history = useHistory()
-  const checkUser = (email,password) => {
 
+  const checkUser = (email,password) => {
     axios.get("https://api.themoviedb.org/3/authentication/token/new", {
       headers:{
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NGQwNjE0ODQzNjA0MTQ0YTFhNGY0MmZiOTk2ZGZlMiIsInN1YiI6IjY0NjdkYWUxZDE4NTcyMDBlNWEzOGY5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pCUXd8GVHXLUcQW4JzgK8WVFhI1e15XiVyrN1fAi75k',
         accept: 'application/json'
       }
     })
-      /* .then(response => response.json()) */
-      /* .then(data => console.log(data)) */
       .then(response => {
         const token = response.data.request_token
         localStorage.setItem("moviesSearcherToken",token)
@@ -62,12 +61,9 @@ function Login() {
     }
   }
 
-
-
-
   return (
     <>
-      {/* <Header /> */}
+      {token && <Redirect to="/listado" />}
       <form onSubmit={onSubmit} action="">
         <label htmlFor="">Email <input type="text" name='email' /></label>
         <br />

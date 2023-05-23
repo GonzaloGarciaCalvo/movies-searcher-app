@@ -1,4 +1,4 @@
-html {
+.htmlStyles {
   background-color: rgb(22, 21, 21);
   margin: 0;
   padding: 0;
@@ -6,6 +6,18 @@ html {
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.bodyStyles {
+  margin: 0 ;
+  padding: 0;
+  background-color: rgb(22, 21, 21);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 ul {
   list-style: none;
 }
@@ -16,6 +28,37 @@ a {
 a:hover {
   color: burlywood;
 }
-footer {
-  position: absolute; bottom: 0;
+
+.listContainer{
+  min-height: 65vh;
 }
+
+.myCard {
+  border: 1px solid wheat;
+  margin-bottom: 2em;
+  padding: 0.7em;
+  color: black;
+  min-height: 54em;
+}
+.card-body {
+  padding:0.5em 0 0 0
+}
+
+footer {
+  margin-top: 4em;
+  background-color: rgb(35, 14, 14);
+  padding: 1em;
+  width: 100%;
+}
+
+/* SEARCHER   */
+#searchButton.btn {
+  padding: 3px 8px 3px 8px;
+  margin: 1em;
+}
+/* .btn-group-sm > .btn, .btn-sm {
+  --bs-btn-padding-y: 0.15rem;
+  --bs-btn-padding-x: 0.4rem;
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-border-radius: 0.15rem;
+} */

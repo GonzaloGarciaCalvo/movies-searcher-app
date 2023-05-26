@@ -32,7 +32,7 @@ function App() {
   }
   console.log("tempMoviesInFavs en App:  ", tempMoviesInFavs)
 
-  const addOrRemoveFavs = (e, id) => {
+  const addOrRemoveFavs = (e) => {
     const btn = e.currentTarget;
     const parent = btn.parentElement; //Card
     const imgURL = parent.querySelector('img').getAttribute('src');
@@ -58,6 +58,7 @@ function App() {
     console.log('Se eliminó la pelicula');
     setFavorites(moviesLeft)
     }
+
   }
   
   return (

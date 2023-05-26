@@ -1,12 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Card, Button } from "react-bootstrap";
 import { Link, useParams } from 'react-router-dom';
 /* import '../styles.css' */
 
 function Item({movie, addOrRemoveFavs}) {
-
+  const [isFav, setIsFav] = useState(false)
   let baseUrl = `https://image.tmdb.org/t/p/w500/`
-
+  
+  const onClick = (e) => {
+    addOrRemoveFavs(e)
+    setIsFav( val => !val)
+  }
 
   return (
     <div className='col-3 p-2'>
@@ -16,10 +20,17 @@ function Item({movie, addOrRemoveFavs}) {
         : 
         <Card.Img variant="top" src={'fallback.jpg'} />
         }
-        <Button variant='light' id='favorite-btn' onClick={addOrRemoveFavs} data-movie-id={movie.id}>  
-          🖤
-          {/* <image src='blackheart.png' alt="no cargo image" />  */}   
-        </Button>
+        { isFav?
+          <Button variant='light' id='favorite-btn' onClick={onClick} data-movie-id={movie.id}>  
+          ❤️ 
+          </Button> :
+          <Button variant='light' id='favorite-btn' onClick={onClick} data-movie-id={movie.id}>  
+            🖤  
+          </Button>
+        } 
+        {/* <Button variant='light' id='favorite-btn' onClick={addOrRemoveFavs} data-movie-id={movie.id}>  
+          🖤  
+        </Button> */}
         {/* <Card.Img variant="top" src={baseUrl+movie.poster_path} />❤️ */}
         <Card.Body>
           <Card.Title id='movieTitle'>{movie.title}</Card.Title>

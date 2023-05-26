@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Card, Button } from "react-bootstrap";
 import { Link} from 'react-router-dom';
 
 function FavItem({movie, addOrRemoveFavs}) {
 
-
+  const [isFav, setIsFav] = useState(false)
+  const onClick = (e) => {
+    addOrRemoveFavs(e)
+    setIsFav( val => !val)
+  }
+  
   return (
     <div className='col-3 p-2 FAVITEM'>
       <Card className=" myCard" >
@@ -13,9 +18,17 @@ function FavItem({movie, addOrRemoveFavs}) {
         : 
         <Card.Img variant="top" src={'fallback.jpg'} />
         }
-        <Button variant='light' id='favorite-btn' onClick={addOrRemoveFavs} data-movie-id={movie.id}>  
+        { isFav?
+          <Button variant='light' id='favorite-btn' onClick={onClick} data-movie-id={movie.id}>  
+            ❤️ 
+          </Button> :
+          <Button variant='light' id='favorite-btn' onClick={onClick} data-movie-id={movie.id}>  
+            🖤  
+          </Button>
+        } 
+        {/* <Button variant='light' id='favorite-btn' onClick={addOrRemoveFavs} data-movie-id={movie.id}>  
           🖤
-        </Button>
+        </Button> */}
         <Card.Body>
           <Card.Title id='movieTitle'>{movie.title}</Card.Title>
           <Card.Text>

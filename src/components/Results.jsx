@@ -3,13 +3,12 @@ import { API_KEY } from '../../constants'
 import Item from './Item'
 import SpinnerLoading from './SpinnerLoading'
 
-function Results({addOrRemuve}) {
+function Results({addOrRemoveFavs}) {
   const query = new URLSearchParams(window.location.search)
   const keyword = query.get('keyword')
-  console.log("KW: ", keyword)
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
-
+  console.log("addOrRemoveFavs: ", addOrRemoveFavs)
 
   useEffect( () => {
     fetch(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&include_adult=true&language=en-US&query=${keyword}`)
@@ -28,7 +27,7 @@ function Results({addOrRemuve}) {
       { loading && <SpinnerLoading />}
       {
         movies.length>0? 
-          movies.map(item => <Item key={item.id} movie={item} addOrRemuve={addOrRemuve} />)
+          movies.map(item => <Item key={item.id} movie={item} addOrRemoveFavs={addOrRemoveFavs} />)
           :
           <h1>No se encontró películas con esa palabra clave</h1>
       }

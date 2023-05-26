@@ -12,16 +12,33 @@ function Listado({addOrRemoveFavs}) {
   const [loading, setLoading] = useState(true)
   const token = localStorage.moviesSearcherToken
 
+
   useEffect( () => {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
-      .then(res => res.json())
-      .then(data => setMovies(data.results))
-      .catch((error) =>{
-        customSwalAlert()
-        console.log("ERROR: ",error)
-      })
-      .finally(setLoading(false))
+    async function getmovies(){
+      /* fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
+        .then(res => res.json())
+        .then(data => setMovies(data.results))
+        .catch((error) =>{
+          customSwalAlert()
+          console.log("ERROR: ",error)
+        })
+        .finally(setLoading(false)) */
+        try{
+          const apiCall = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
+          const response = await apiCall.json()
+          const favsInLocalStorage = localStorage.getItem('favs')
+          if (favsInLocalStorage !== null) {
+            
+          }
+
+        } catch(error) {
+          console.log(error.message)
+        }
+    }
+    getmovies()
   }, [])
+
+ 
 
   return (
     <>

@@ -8,13 +8,12 @@ import { API_KEY } from '../../constants'
 /* import Header from './Header'
 import Footer from './Footer' */
 
-function Listado() {
+function Listado({addOrRemoveFavs}) {
 
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
   /* const history = useHistory() */
   const token = localStorage.moviesSearcherToken
-  
  /*  if (!token) {
     history.push('/')
   } */
@@ -24,7 +23,6 @@ function Listado() {
       .then(data => setMovies(data.results))
       .catch((error) =>{
         customSwalAlert()
-        console.log("en catch!!!")
         console.log("ERROR: ",error)
       })
       .finally(setLoading(false))
@@ -42,7 +40,7 @@ function Listado() {
             movies && movies.map(item => <Card movie={item} /> ) 
           } */}
           { 
-            movies.map(movie => <Item  key={movie.id} movie={movie} />)
+            movies.map(movie => <Item  key={movie.id} movie={movie} addOrRemoveFavs={addOrRemoveFavs}/>)
           }
         </div>
     </>

@@ -16,7 +16,7 @@ function Searcher() {
       swal("El campo debe tener mas de 3 caracteres")
       return
     } else{
-      history.push(`/resultados?search=${inputValue}`)
+      history.push(`/results?keyword=${inputValue}`)
       e.currentTarget.search.value= " "
     }
   }

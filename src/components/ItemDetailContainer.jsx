@@ -32,17 +32,11 @@ function ItemDateil() {
     return () => controller.abort()
   }, [])
 
-  if (movieDetail) {console.log("movieDetail: ", movieDetail)}
-  
-
   return (
     <>
       {/* {loading && <SpinnerLoading />} */}
       {/* {!token && <Redirect to="/" />} */}
       {!token? <Redirect to="/" />:null}
-      <div>
-        ItemDateil
-      </div>
       { movieDetail && <ItemDetail movie={movieDetail} /> }
     </>
   )

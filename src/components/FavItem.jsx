@@ -1,26 +1,21 @@
 import React from 'react'
 import { Card, Button } from "react-bootstrap";
-import { Link, useParams } from 'react-router-dom';
-/* import '../styles.css' */
+import { Link} from 'react-router-dom';
 
-function Item({movie, addOrRemoveFavs}) {
-
-  let baseUrl = `https://image.tmdb.org/t/p/w500/`
+function FavItem({movie, addOrRemoveFavs}) {
 
 
   return (
-    <div className='col-3 p-2'>
+    <div className='col-3 p-2 FAVITEM'>
       <Card className=" myCard" >
-        {movie.poster_path? 
-        <Card.Img variant="top" src={baseUrl+movie.poster_path} /> 
+        {movie.imgURL? 
+        <Card.Img variant="top" src={movie.imgURL} /> 
         : 
         <Card.Img variant="top" src={'fallback.jpg'} />
         }
         <Button variant='light' id='favorite-btn' onClick={addOrRemoveFavs} data-movie-id={movie.id}>  
           🖤
-          {/* <image src='blackheart.png' alt="no cargo image" />  */}   
         </Button>
-        {/* <Card.Img variant="top" src={baseUrl+movie.poster_path} />❤️ */}
         <Card.Body>
           <Card.Title id='movieTitle'>{movie.title}</Card.Title>
           <Card.Text>
@@ -37,4 +32,4 @@ function Item({movie, addOrRemoveFavs}) {
   )
 }
 
-export default Item
+export default FavItem

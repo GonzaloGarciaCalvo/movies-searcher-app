@@ -1,25 +1,39 @@
 import React,{ useState, useEffect }from 'react'
 import { API_KEY } from '../../constants'
+import Item from './Item'
+import SpinnerLoading from './SpinnerLoading'
 
-function Results() {
+function Results({addOrRemuve}) {
   const query = new URLSearchParams(window.location.search)
   const keyword = query.get('keyword')
+  console.log("KW: ", keyword)
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
-  
+
+
   useEffect( () => {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
+    fetch(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&include_adult=true&language=en-US&query=${keyword}`)
       .then(res => res.json())
       .then(data => setMovies(data.results))
       .catch((error) =>{
         customSwalAlert()
-        console.log("en catch!!!")
         console.log("ERROR: ",error)
       })
       .finally(setLoading(false))
-  }, [])
+  }, [keyword])
+
+  console.log("movies:",movies)
   return (
-    <div>Results</div>
+    <section className='d-flex flex-row flex-wrap'>
+      { loading && <SpinnerLoading />}
+      {
+        movies.length>0? 
+          movies.map(item => <Item key={item.id} movie={item} addOrRemuve={addOrRemuve} />)
+          :
+          <h1>No se encontró películas con esa palabra clave</h1>
+      }
+    
+    </section>
   )
 }
 

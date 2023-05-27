@@ -4,14 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 /* import '../styles.css' */
 
 function Item({movie, addOrRemoveFavs}) {
-  const [isFav, setIsFav] = useState(false)
+  const [isFav, setIsFav] = useState(movie.isFav)
   let baseUrl = `https://image.tmdb.org/t/p/w500/`
-  
+  /* console.log("movie.isFav: ", movie.isFav) */
   const onClick = (e) => {
     addOrRemoveFavs(e)
     setIsFav( val => !val)
   }
-
+  /* console.log("isFav en Item: ", isFav, "id: ", movie.id) */
   return (
     <div className='col-3 p-2'>
       <Card className=" myCard" >

@@ -45,22 +45,23 @@ function App() {
       id:btn.dataset.movieId
     }
     /* console.log(btn.dataset) */
-    console. log("movieData", movieData)
+    //console. log("movieData", movieData)
     let movieIsInArray = tempMoviesInFavs.find(oneMovie => oneMovie.id === movieData.id);
     if (!movieIsInArray) {
+      movieData.isFav=true
     tempMoviesInFavs.push(movieData) ;
     localStorage.setItem('favs', JSON.stringify(tempMoviesInFavs));
     console.log('Se agregó la película');
     setFavorites(tempMoviesInFavs)
-    } else {
+    } else { // Elimina de favs
     let moviesLeft = tempMoviesInFavs.filter(oneMovie => oneMovie.id !== movieData.id)
+    //movieData.isFav=false // necesario??
     localStorage.setItem('favs', JSON.stringify(moviesLeft));
     console.log('Se eliminó la pelicula');
     setFavorites(moviesLeft)
     }
-
   }
-  
+
   return (
 		<>
 			<Header favQuantity={favorites.length}/>
@@ -68,16 +69,16 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={Login} />
           <Route 
-            path="/favoritos" 
+            exact  path="/favoritos" 
             render={(props) => <Favorites favorites={favorites} addOrRemoveFavs={addOrRemoveFavs} {...props} />}
           />
 					<Route
-						path="/listado"
-						render={(props) => <Listado addOrRemoveFavs={addOrRemoveFavs} {...props} />}
+						exact path="/listado"
+						render={(props) => <Listado addOrRemoveFavs={addOrRemoveFavs} favorites={favorites} {...props} />}
 					/>
 					<Route path="/movie" component={ItemDateil} />
 					<Route
-						path="/results"
+						exact path="/results"
 						render={(props) => <Results addOrRemoveFavs={addOrRemoveFavs} {...props} />}
 					/>
           

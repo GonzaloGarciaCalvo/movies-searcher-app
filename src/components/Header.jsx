@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Searcher from './Searcher'
 
 function Header({favQuantity}) {
@@ -11,7 +11,7 @@ function Header({favQuantity}) {
             <Link to={'/'}>Home</Link>
           </li>
           <li className='m-2'>
-            <Link to={'/listado'}>Listado</Link>
+            <NavLink activeStyle={{pointerEvents: 'none'}} to={'/listado'}>Listado</NavLink>
           </li>
           <li className='m-2'> 
             <Link to={'/favoritos'}>Favoritos</Link>

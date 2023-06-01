@@ -9,11 +9,16 @@ import Favorites from './components/Favorites'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css'
+import { getMoviesInFavsfromLS } from '../utilities/getMoviesInFavsFromLS';
+import { useDispatch } from 'react-redux';
+import {userLogin} from './components/store/actions'
 /* import { addOrRemoveFavs } from '../utilities/addOrRemoveFavs' */
 
 function App() {
 
   const [favorites, setFavorites] = useState([])
+  //const dispatch = useDispatch();
+
   useEffect( ()=>{
     // trea los favs del localStorage y los setea al state si no existen
     const favsInLocalStorage = localStorage.getItem('favs')
@@ -23,14 +28,9 @@ function App() {
     }
   }, [])
 
-  const favMovies = localStorage.getItem('favs')
-  let tempMoviesInFavs
-  if (favMovies === null) {
-    tempMoviesInFavs = []
-  } else {
-    tempMoviesInFavs = JSON.parse(favMovies)
-  }
-  console.log("tempMoviesInFavs en App:  ", tempMoviesInFavs)
+
+  const tempMoviesInFavs = getMoviesInFavsfromLS()
+
 
   const addOrRemoveFavs = (e) => {
     const btn = e.currentTarget;
@@ -63,29 +63,29 @@ function App() {
   }
 
   return (
-		<>
-			<Header favQuantity={favorites.length}/>
-			<main className="container-fluid">
-				<Switch>
-					<Route exact path="/" component={Login} />
-          <Route 
-            exact  path="/favoritos" 
-            render={(props) => <Favorites favorites={favorites} addOrRemoveFavs={addOrRemoveFavs} {...props} />}
-          />
-					<Route
-						exact path="/listado"
-						render={(props) => <Listado addOrRemoveFavs={addOrRemoveFavs} favorites={favorites} {...props} />}
-					/>
-					<Route path="/movie" component={ItemDateil} />
-					<Route
-						exact path="/results"
-						render={(props) => <Results addOrRemoveFavs={addOrRemoveFavs} {...props} />}
-					/>
-          
-				</Switch>
-			</main>
-			<Footer />
-		</>
+    <>
+        <Header favQuantity={favorites.length}/>
+        <main className="container-fluid">
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route 
+              exact  path="/favoritos" 
+              render={(props) => <Favorites favorites={favorites} addOrRemoveFavs={addOrRemoveFavs} {...props} />}
+            />
+            <Route
+              exact path="/listado"
+              render={(props) => <Listado addOrRemoveFavs={addOrRemoveFavs} favorites={favorites} {...props} />}
+            />
+            <Route path="/movie" component={ItemDateil} />
+            <Route
+              exact path="/results"
+              render={(props) => <Results addOrRemoveFavs={addOrRemoveFavs} {...props} />}
+            />
+            
+          </Switch>
+        </main>
+        <Footer />
+    </>
 	);
 }
 

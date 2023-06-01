@@ -8,10 +8,9 @@ function Results({addOrRemoveFavs}) {
   const keyword = query.get('keyword')
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
-  console.log("addOrRemoveFavs: ", addOrRemoveFavs)
-
+  const URL = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&include_adult=true&language=en-US&query=${keyword}`
   useEffect( () => {
-    fetch(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&include_adult=true&language=en-US&query=${keyword}`)
+    fetch(URL)
       .then(res => res.json())
       .then(data => setMovies(data.results))
       .catch((error) =>{

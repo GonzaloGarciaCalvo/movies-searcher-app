@@ -16,6 +16,7 @@ import {userLogin} from './components/store/actions'
 
 function App() {
 
+
   const [favorites, setFavorites] = useState([])
   //const dispatch = useDispatch();
 
@@ -64,7 +65,7 @@ function App() {
 
   return (
     <>
-        <Header favQuantity={favorites.length}/>
+        <Header favQuantity={favorites.length} favorites={favorites}/>
         <main className="container-fluid">
           <Switch>
             <Route exact path="/" component={Login} />

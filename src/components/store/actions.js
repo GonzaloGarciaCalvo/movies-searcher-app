@@ -1,6 +1,8 @@
-import { types, logintypes } from "./types";
-const { ADD_REMOVE_FAVS } = types
-const { USER_LOGIN } = logintypes
+/* import { types, logintypes } from "./types"; */
+import { /* types,  */logintypes, favsTypes } from "./types";
+const {  ADD_REMOVE_FAVS, USER_LOGIN, USER_LOGOUT } = logintypes
+const {ADDTOFAVS, REMOVEFROMFAVS }= favsTypes
+
 
 /* export const addRemoveFavs = (e)=>({
   type: ADD_REMOVE_FAVS,
@@ -9,7 +11,7 @@ const { USER_LOGIN } = logintypes
 
 
 
-export const userLogin = (e) => {
+const userLogin = (e) => {
   return async (dispatch) => {
     try {
       console.log("en userLogin")
@@ -37,3 +39,21 @@ export const userLogin = (e) => {
     }
   };
 };
+
+const userLogOut= () => ({
+  type: "USER_LOGOUT"
+})
+
+const addFavs = () =>({
+  type: "ADDTOFAVS"
+})
+const removeFavs = ()=> ({
+  type: "REMOVEFROMFAVS"
+})
+const addRemoveFavs = (e) =>({
+  type: "ADD_REMOVE_FAVS",
+  payload: e
+})
+
+export {userLogin, userLogOut, addFavs, removeFavs}
+/* export {userLogin, userLogOut} */

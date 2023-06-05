@@ -15,7 +15,7 @@ function Login() {
   //const dispatch = useDispatch()
 
 
-  const checkUser = (e) => {
+  const checkUser = () => {
     fetch("https://api.themoviedb.org/3/authentication/token/new", {
       headers:{
         Authorization: AUTH_KEY,
@@ -52,7 +52,7 @@ function Login() {
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
-    /* if (!email || !password) {
+    if (!email || !password) {
       console.log("ERROR: los campos no pueden estar vacios")
       swal("ERROR: los campos no pueden estar vacios");
       return
@@ -64,7 +64,7 @@ function Login() {
       console.log("email check: ",emailRegEx.test(email))
       swal("error en formato de campos");
       console.log("ERROR:  error en formato de campos")
-    } */
+    }
     checkUser()
   }
 

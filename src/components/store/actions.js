@@ -44,16 +44,18 @@ const userLogOut= () => ({
   type: "USER_LOGOUT"
 })
 
-const addFavs = () =>({
-  type: "ADDTOFAVS"
+const addFavs = (e) =>({
+  type: "ADDTOFAVS",
+  payload: e
 })
-const removeFavs = ()=> ({
-  type: "REMOVEFROMFAVS"
+const removeFavs = (e)=> ({
+  type: "REMOVEFROMFAVS",
+  payload: e
 })
 const addRemoveFavs = (e) =>({
   type: "ADD_REMOVE_FAVS",
   payload: e
 })
 
-export {userLogin, userLogOut, addFavs, removeFavs}
+export {userLogin, userLogOut, addFavs, removeFavs, addRemoveFavs}
 /* export {userLogin, userLogOut} */

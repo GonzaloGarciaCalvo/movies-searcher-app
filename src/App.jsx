@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Login from './components/Login'
-import Listado from './components/Listado'
+import DiscoverList from './components/DiscoverList'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ItemDateil from './components/ItemDetailContainer'
@@ -10,7 +10,7 @@ import { Route, Switch, useHistory } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css'
 import { getMoviesInFavsfromLS } from '../utilities/getMoviesInFavsFromLS';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {userLogin} from './components/store/actions'
 /* import { addOrRemoveFavs } from '../utilities/addOrRemoveFavs' */
 
@@ -18,6 +18,8 @@ function App() {
 
 
   const [favorites, setFavorites] = useState([])
+  const favsRedux = useSelector( state => state)
+  console.log("favsRedux: ", favsRedux)
   //const dispatch = useDispatch();
 
   useEffect( ()=>{
@@ -29,9 +31,7 @@ function App() {
     }
   }, [])
 
-
   const tempMoviesInFavs = getMoviesInFavsfromLS()
-
 
   const addOrRemoveFavs = (e) => {
     const btn = e.currentTarget;
@@ -45,8 +45,6 @@ function App() {
       overview,
       id:btn.dataset.movieId
     }
-    /* console.log(btn.dataset) */
-    //console. log("movieData", movieData)
     let movieIsInArray = tempMoviesInFavs.find(oneMovie => oneMovie.id === movieData.id);
     if (!movieIsInArray) {
       movieData.isFav=true
@@ -56,7 +54,6 @@ function App() {
     setFavorites(tempMoviesInFavs)
     } else { // Elimina de favs
     let moviesLeft = tempMoviesInFavs.filter(oneMovie => oneMovie.id !== movieData.id)
-    //movieData.isFav=false // necesario??
     localStorage.setItem('favs', JSON.stringify(moviesLeft));
     console.log('Se eliminó la pelicula');
     setFavorites(moviesLeft)
@@ -75,7 +72,7 @@ function App() {
             />
             <Route
               exact path="/listado"
-              render={(props) => <Listado addOrRemoveFavs={addOrRemoveFavs} favorites={favorites} {...props} />}
+              render={(props) => <DiscoverList addOrRemoveFavs={addOrRemoveFavs} favorites={favorites} {...props} />}
             />
             <Route path="/movie" component={ItemDateil} />
             <Route

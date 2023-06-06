@@ -28,53 +28,77 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-/* const favInLS = JSON.parse( localStorage.getItem('favs') )|| null
-console.log("favsInLSL ", favInLS) */
+
 const favsInitialState = {
-  favs:  []
+  favorites:  []
 }
 
-
 const favsReducer = (state = favsInitialState, action) => {
+  const e= action.payload
   switch (action.type) {
-    /* case ADDTOFAVS:
-      return [
-        ...state, action.item
-      ];// favorites es array */
-    case ADD_REMOVE_FAVS:
+    case ADDTOFAVS:
+      const btnAdd = e.currentTarget;
+      const parentAdd = btnAdd.parentElement; //Card
+      const imgURLAdd = parentAdd.querySelector('img').getAttribute('src');
+      const titleAdd = parentAdd.querySelector('#movieTitle').innerText;
+      const overviewAdd = parentAdd.querySelector ('p').innerText;
+      const movieDataAdd = {
+        imgURLAdd, 
+        titleAdd, 
+        overviewAdd,
+        id:btnAdd.dataset.movieId
+      }
+      let movieIsInArrayAdd = state.favorites.find(oneMovie => oneMovie.id === movieDataAdd.id);
+      if (!movieIsInArrayAdd) {
+        movieDataAdd.isFav=true
+      }
+      return {
+        ...state, favorites:[...state.favorites, movieDataAdd]
+      }
+      case REMOVEFROMFAVS:
+        const btn = e.currentTarget;
+        const parent = btn.parentElement; //Card
+        const imgURL = parent.querySelector('img').getAttribute('src');
+        const title = parent .querySelector('#movieTitle').innerText;
+        const overview = parent.querySelector ('p').innerText;
+        const movieData = {
+          imgURL, 
+          title, 
+          overview,
+          id:btn.dataset.movieId
+        }
+        let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movieData.id);
+        if (movieIsInArray) { // Elimina de favs
+        let moviesLeft = state.favorites.filter(oneMovie => oneMovie.id !== movieData.id)
+        console.log('Se eliminó la pelicula');
+        return {...state, favorites: moviesLeft }
+        }
+
+    /* case ADD_REMOVE_FAVS:
       const btn = e.currentTarget;
-    const parent = btn.parentElement; //Card
-    const imgURL = parent.querySelector('img').getAttribute('src');
-    const title = parent .querySelector('#movieTitle').innerText;
-    const overview = parent.querySelector ('p').innerText;
-    const movieData = {
-      imgURL, 
-      title, 
-      overview,
-      id:btn.dataset.movieId
-    }
-    /* console.log(btn.dataset) */
-    //console. log("movieData", movieData)
-    let movieIsInArray = tempMoviesInFavs.find(oneMovie => oneMovie.id === movieData.id);
-    if (!movieIsInArray) {
-      movieData.isFav=true
-    tempMoviesInFavs.push(movieData) ;
-    localStorage.setItem('favs', JSON.stringify(tempMoviesInFavs));
-    console.log('Se agregó la película');
-    return {
-      ...state, movieData
-    }
-    /* setFavorites(tempMoviesInFavs) */
-    } else { // Elimina de favs
-    let moviesLeft = tempMoviesInFavs.filter(oneMovie => oneMovie.id !== movieData.id)
-    //movieData.isFav=false // necesario??
-    localStorage.setItem('favs', JSON.stringify(moviesLeft));
-    console.log('Se eliminó la pelicula');
-    return {
-      ...moviesLeft
-    }
-    /* setFavorites(moviesLeft) */
-    }
+      const parent = btn.parentElement; //Card
+      const imgURL = parent.querySelector('img').getAttribute('src');
+      const title = parent .querySelector('#movieTitle').innerText;
+      const overview = parent.querySelector ('p').innerText;
+      const movieData = {
+        imgURL, 
+        title, 
+        overview,
+        id:btn.dataset.movieId
+      }
+      let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movieData.id);
+      if (!movieIsInArray) {
+        movieData.isFav=true
+      console.log('Se agregó la película');
+ 
+      return {
+        ...state, favorites:[...state.favorites, movieData]
+      }
+      } else { // Elimina de favs
+      let moviesLeft = state.favorites.filter(oneMovie => oneMovie.id !== movieData.id)
+      console.log('Se eliminó la pelicula');
+      return {...state, favorites: moviesLeft }
+      } */
     default:
       return state;
   }

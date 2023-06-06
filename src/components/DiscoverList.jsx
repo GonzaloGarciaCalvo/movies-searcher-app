@@ -3,23 +3,18 @@ import { Redirect} from 'react-router-dom'
 import Item from './Item'
 import { customSwalAlert } from '../../utilities/toast'
 import SpinnerLoading from './SpinnerLoading'
-import { useDispatch } from 'react-redux'
-
-//import { API_KEY } from '../../constants'
-//import.meta.env.VITE_API_KEY
+import { useDispatch, useSelector } from 'react-redux'
 
 
-
-function Listado({addOrRemoveFavs, favorites=[]}) {
+function DiscoverList({/* addOrRemoveFavs *//*, favorites=[] */}) {
 
   const [movies, setMovies] = useState([])
   const [dataToRender, setDataToRender] = useState([])
   //const [loading, setLoading] = useState(true)
   const token = localStorage.moviesSearcherToken
   //console.log("VITE_API_KEY: ", import.meta.env.VITE_API_KEY)
+  const favoritesRedux = useSelector( state => state.favs.favorites)
 
-  //Prueba de poner el reducer
-const dispatch = useDispatch()
 
   const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
   useEffect( () => {
@@ -41,23 +36,19 @@ const dispatch = useDispatch()
     async function addIsFavKeyToData() {
         try{
           const moviesCompare = [...movies]
-          const favsInLocalStorage = localStorage.getItem('favs')
-          if (favsInLocalStorage === null) {
+          if (favoritesRedux === null) {
             for(let item of moviesCompare) { 
                 item.isFav=false
               }
           }
-          if (favsInLocalStorage !== null) {
+          if (favoritesRedux !== null) {
             for(let item of moviesCompare) { 
-              //console.log("item.id: ", item.id)
-              const checkIfIsInFavs = await favorites.find(fav => fav.id == item.id)// are diferent types
+              const checkIfIsInFavs = await favoritesRedux.find(fav => fav.id == item.id)// are diferent types
               if (checkIfIsInFavs) {
                 item.isFav=true
               } else {
                 item.isFav=false
-                //console.log("en ELSE")
               }
-              //console.log("checkIfIsFavs.id: ", checkIfIsInFavs?.id, " ,isFav: ", checkIfIsInFavs?.isFav)
             }
           }
           setDataToRender(moviesCompare) 
@@ -67,12 +58,6 @@ const dispatch = useDispatch()
     }
     const dataProsesed = addIsFavKeyToData()
   }, [movies])
-  dataToRender?.length?  console.log("dataToRender: ", dataToRender):null
-
-  
-  
-/*   console.log("movies: ", movies)
-  console.log("dataToRender: ",dataToRender) */
 
   
   return (
@@ -81,7 +66,7 @@ const dispatch = useDispatch()
       {!token && <Redirect to="/" />}
       <div className='row listContainer'>
         { dataToRender?
-          dataToRender.map(movie => <Item  key={movie.id} movie={movie} addOrRemoveFavs={addOrRemoveFavs}/>)
+          dataToRender.map(movie => <Item  key={movie.id} movie={movie}/>)
           : null
         }
       </div>
@@ -89,7 +74,7 @@ const dispatch = useDispatch()
   )
 }
 
-export default Listado
+export default DiscoverList
 
 
 /* fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)

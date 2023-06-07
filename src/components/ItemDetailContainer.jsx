@@ -8,8 +8,6 @@ import { API_KEY } from '../../constants'
 
 
 function ItemDateil() {
-
-  /* const token = localStorage.moviesSearcherToken */
   const token = useSelector( state => state.auth.token)
   const query = new URLSearchParams(window.location.search)
   const movieId = query.get("movieId")

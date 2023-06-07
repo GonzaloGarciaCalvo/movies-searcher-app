@@ -7,9 +7,7 @@ import { useSelector } from 'react-redux'
 function Favorites() {
 
   const favoritesRedux = useSelector( state => state.favs.favorites)
-
- /*  let token= localStorage.moviesSearcherToken */
- const token = useSelector( state => state.auth.token)
+  const token = useSelector( state => state.auth.token)
 
   /* const [favorites, setFavorites] = useState([])
   useEffect( ()=>{

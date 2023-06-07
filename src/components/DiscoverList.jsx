@@ -11,9 +11,7 @@ function DiscoverList() {
   const [movies, setMovies] = useState([])
   const [dataToRender, setDataToRender] = useState([])
   const [loading, setLoading] = useState(true)
-  /* const token = localStorage.moviesSearcherToken */
   const token = useSelector( state => state.auth.token)
-  //console.log("VITE_API_KEY: ", import.meta.env.VITE_API_KEY)
   const favoritesRedux = useSelector( state => state.favs.favorites)
 
 
@@ -78,13 +76,3 @@ function DiscoverList() {
 }
 
 export default DiscoverList
-
-
-/* fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
- .then(res => res.json())
- .then(data => setMovies(data.results))
- .catch((error) =>{
-   customSwalAlert()
-   console.log("ERROR: ",error)
- })
- .finally(setLoading(false)) */

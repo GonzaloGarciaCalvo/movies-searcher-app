@@ -12,7 +12,6 @@ import { userLogin } from './store/actions'
 function Login() {
   //const [isLogged, setIsLoged] = useState(false)
   const history = useHistory()
-  /* const token = localStorage.moviesSearcherToken */
   const token = useSelector( state => state.auth.token)
   const dispatch = useDispatch()
 

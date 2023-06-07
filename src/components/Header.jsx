@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userLogOut } from './store/actions'
 
 function Header({favQuantity, favorites}) {
-  //Headet necesita recibir a favarotes para 
   const dispatch = useDispatch()
   const history = useHistory()
   const favoritesRedux = useSelector(state => state.favs.favorites)
@@ -29,27 +28,15 @@ function Header({favQuantity, favorites}) {
             <NavLink activeStyle={{pointerEvents: 'none'}} to={'/listado'}>Listado</NavLink>
           </li>
           <li className='m-2'> 
-            {/* <Link to={'/favoritos'} className='d-flex flex-row'>
-               Favoritos <span className='favsQuantityIndicator'>
-                          <p>
-                            {favoritesRedux.length}
-                          </p>
-                        </span>
-            </Link> */}
             <Link to={'/favoritos'} className='d-flex flex-row'>
-              Favoritos  
-              {/* <span className='favsQuantityIndicator mx-3'>
-                {favoritesRedux.length}
-              </span>      */}   
+              Favoritos   
             </Link>
           </li>
         </ul>
             <p className='favsQuantityIndicator ms-0 me-2 my-0'>
               {favoritesRedux.length}
             </p>
-        {/* <p className='m-2'>Favs length: {favoritesRedux.length}</p> */}
         <Searcher  />
-        {/* <p className='m-2'>Favoritos: {favQuantity}</p> */}
         <Button onClick={handleLogOut} className='btn-sm logOutBtn me-5' >Logout</Button>
       </nav>
     </header>

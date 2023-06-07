@@ -10,10 +10,7 @@ function ItemDetail({movie}) {
   const genresList = movie.genres?.map(item => item.name).join(", ")
   const companiesList = movie.production_companies?.map( item => item.name).join(", ")
 
-  /* useEffect( () => {
-    if (!movie?.success) { setError(true)}
-    
-  }, []) */
+
   return (
     <>
       {/* {!error?  */}

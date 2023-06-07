@@ -1,15 +1,13 @@
 import React, {useState} from 'react'
 import { Card, Button } from "react-bootstrap";
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {addFavs, removeFavs,addRemoveFavs} from "./store/actions"
+import { useDispatch} from 'react-redux';
+import {addFavs, removeFavs} from "./store/actions"
 /* import '../styles.css' */
 
 function Item({movie}) {
   const [isFav, setIsFav] = useState(movie.isFav)
   let baseUrl = `https://image.tmdb.org/t/p/w500/`
-  console.log("movie.isFav: ", movie.isFav)
-
   const dispatch = useDispatch()
 
   const handleAddFav = (e) => {

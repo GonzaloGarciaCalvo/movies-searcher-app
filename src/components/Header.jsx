@@ -20,8 +20,8 @@ function Header({favQuantity, favorites}) {
   }
   return (
     <header>
-      <nav className='d-flex flex-row justify-content-start'>
-        <ul className='d-flex flex-row justify-content-start m-3'>
+      <nav className='d-flex flex-row justify-content-start align-items-center m-3 position-relative '>
+        <ul className='d-flex flex-row justify-content-start m-0'>
           <li className='m-2'>
             <Link to={'/'}>Home</Link>
           </li>
@@ -29,13 +29,28 @@ function Header({favQuantity, favorites}) {
             <NavLink activeStyle={{pointerEvents: 'none'}} to={'/listado'}>Listado</NavLink>
           </li>
           <li className='m-2'> 
-            <Link to={'/favoritos'}>Favoritos !!</Link>
+            {/* <Link to={'/favoritos'} className='d-flex flex-row'>
+               Favoritos <span className='favsQuantityIndicator'>
+                          <p>
+                            {favoritesRedux.length}
+                          </p>
+                        </span>
+            </Link> */}
+            <Link to={'/favoritos'} className='d-flex flex-row'>
+              Favoritos  
+              {/* <span className='favsQuantityIndicator mx-3'>
+                {favoritesRedux.length}
+              </span>      */}   
+            </Link>
           </li>
         </ul>
-        <Searcher />
+            <p className='favsQuantityIndicator ms-0 me-2 my-0'>
+              {favoritesRedux.length}
+            </p>
+        {/* <p className='m-2'>Favs length: {favoritesRedux.length}</p> */}
+        <Searcher  />
         {/* <p className='m-2'>Favoritos: {favQuantity}</p> */}
-        <p className='m-2'>Favs length: {favoritesRedux.length}</p>
-        <Button onClick={handleLogOut} size='sm' >Logout</Button>
+        <Button onClick={handleLogOut} className='btn-sm logOutBtn me-5' >Logout</Button>
       </nav>
     </header>
   )

@@ -23,7 +23,7 @@ const userLogin = (e) => {
       });
       const dataRes = await response.json()
       const token = await dataRes.request_token
-      localStorage.setItem("moviesSearcherToken", token)
+      /* localStorage.setItem("moviesSearcherToken", token) */
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }

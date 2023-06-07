@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import FavItem from './FavItem'
+import Item from './Item'
 import { Redirect} from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-function Favorites({addOrRemoveFavs, favorites}) {
+function Favorites() {
 
-  console.log("favorites en Favorites: ", favorites)
-  let token= localStorage.moviesSearcherToken
- /*  useEffect( ()=>{
-    token = localStorage.moviesSearcherToken
-    
-  },[favorites] ) */
-  console.log("token en Favorites: ", token)
+  const favoritesRedux = useSelector( state => state.favs.favorites)
+
+ /*  let token= localStorage.moviesSearcherToken */
+ const token = useSelector( state => state.auth.token)
+
   /* const [favorites, setFavorites] = useState([])
   useEffect( ()=>{
     const favsInLocalStorage = localStorage.getItem('favs')
@@ -19,17 +19,16 @@ function Favorites({addOrRemoveFavs, favorites}) {
       setFavorites(favsArr)
     }
   }, []) */
-console.log("fAVORITES")
 
   return (
     <section>
       {!token && <Redirect to={'/'} />}
-      <h1>Favoritos</h1> 
-      <div className='d-flex flex-row flex-wrap '>
-        {favorites.length?
-          favorites.map(item => <FavItem key={item.id} movie={item}addOrRemoveFavs={addOrRemoveFavs} />)
+      <h1 className='m-4'>Favoritos</h1> 
+      <div className='d-flex flex-row flex-wrap favoritesBox '>
+        {favoritesRedux.length?
+          favoritesRedux.map(item => <Item key={item.id} movie={item} />)
           :
-          null
+          <p className='w-100 fs-3 text-center'>No seleccionaste favoritos</p>
         }
       </div>
     </section>

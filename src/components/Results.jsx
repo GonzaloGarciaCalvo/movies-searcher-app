@@ -2,8 +2,9 @@ import React,{ useState, useEffect }from 'react'
 import { API_KEY } from '../../constants'
 import Item from './Item'
 import SpinnerLoading from './SpinnerLoading'
+import { Redirect } from 'react-router'
 
-function Results({addOrRemoveFavs}) {
+function Results() {
   const query = new URLSearchParams(window.location.search)
   const keyword = query.get('keyword')
   const [movies, setMovies] = useState([])
@@ -23,10 +24,11 @@ function Results({addOrRemoveFavs}) {
   console.log("movies:",movies)
   return (
     <section className='d-flex flex-row flex-wrap'>
+      {!keyword && <Redirect to={'/listado'} />}
       { loading && <SpinnerLoading />}
       {
         movies.length>0? 
-          movies.map(item => <Item key={item.id} movie={item} addOrRemoveFavs={addOrRemoveFavs} />)
+          movies.map(item => <Item key={item.id} movie={item}  />)
           :
           <h1>No se encontró películas con esa palabra clave</h1>
       }

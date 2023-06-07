@@ -6,12 +6,13 @@ import SpinnerLoading from './SpinnerLoading'
 import { useDispatch, useSelector } from 'react-redux'
 
 
-function DiscoverList({/* addOrRemoveFavs *//*, favorites=[] */}) {
+function DiscoverList() {
 
   const [movies, setMovies] = useState([])
   const [dataToRender, setDataToRender] = useState([])
-  //const [loading, setLoading] = useState(true)
-  const token = localStorage.moviesSearcherToken
+  const [loading, setLoading] = useState(true)
+  /* const token = localStorage.moviesSearcherToken */
+  const token = useSelector( state => state.auth.token)
   //console.log("VITE_API_KEY: ", import.meta.env.VITE_API_KEY)
   const favoritesRedux = useSelector( state => state.favs.favorites)
 
@@ -26,6 +27,8 @@ function DiscoverList({/* addOrRemoveFavs *//*, favorites=[] */}) {
           setMovies(dataMovies)
         } catch(error) {
         console.log("ERROR: ", error.message)
+      } finally {
+        setLoading(false)
       }
     }
     const dataMovies = getmovies()
@@ -62,7 +65,7 @@ function DiscoverList({/* addOrRemoveFavs *//*, favorites=[] */}) {
   
   return (
     <>
-      {/* {loading && <SpinnerLoading />} */}
+      {loading && <SpinnerLoading />}
       {!token && <Redirect to="/" />}
       <div className='row listContainer'>
         { dataToRender?

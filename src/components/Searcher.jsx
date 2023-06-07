@@ -23,7 +23,7 @@ function Searcher() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='d-flex d-row  align-items-center'>
+    <form onSubmit={handleSubmit} className='d-flex d-row  align-items-center mx-2'>
       <input type='text' name="search" placeholder='palabra clave' className='my-0 py-0' />
       <Button  type='submit' size='sm' id='searchButton'>Search</Button>
     </form>

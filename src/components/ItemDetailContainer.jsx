@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import {useParams, Redirect} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import { customSwalAlert } from '../../utilities/toast'
-import Item from './Item'
+import { useSelector } from 'react-redux'
 import ItemDetail from './ItemDetail'
 import SpinnerLoading from './SpinnerLoading'
 import { API_KEY } from '../../constants'
@@ -9,13 +9,14 @@ import { API_KEY } from '../../constants'
 
 function ItemDateil() {
 
-  const token = localStorage.moviesSearcherToken
+  /* const token = localStorage.moviesSearcherToken */
+  const token = useSelector( state => state.auth.token)
   const query = new URLSearchParams(window.location.search)
   const movieId = query.get("movieId")
   const [movieDetail, setMovieDetail] = useState(null)
   const [loading, setLoading] = useState(true)
 
-
+ // images loading is slow, try to catch the img from the DiscoverList
   useEffect( () => {
     const controller = new AbortController()
     const {signal} = controller

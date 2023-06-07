@@ -28,7 +28,29 @@ a {
 a:hover {
   color: burlywood;
 }
-
+/******** HEADER  ********/
+.logOutBtn {
+  /* height: 48px; */
+  position:absolute;
+  right: 0;
+}
+.favsQuantityIndicator {
+  /* display: inline-block; */
+  background-color: red;
+  border-radius: 50%;
+  font-size: 1em;
+  width: 1.3em;
+  height: 1.3em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/* .favsQuantityIndicator p {
+  display: inline-block;
+  margin: 0;
+} */
+/*////////////////////////////////////////*/
 .listContainer{
   min-height: 65vh;
 }
@@ -83,4 +105,9 @@ footer {
 #favorite-btn image{
   width: 15px;
   height: 15px;
+}
+
+/*     */
+.favoritesBox {
+  min-height: 60vh;
 }

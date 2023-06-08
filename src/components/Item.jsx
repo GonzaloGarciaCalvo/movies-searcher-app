@@ -26,9 +26,9 @@ function Item({movie}) {
     <div className='col-3 p-2'>
       <Card className=" myCard" >
         {movie.poster_path? 
-        <Card.Img variant="top" src={baseUrl+movie.poster_path} /> 
+        <Card.Img variant="top" src={baseUrl+movie.poster_path} className='itemImg'/> 
         : 
-        <Card.Img variant="top" src={'fallback.jpg'} />
+        <Card.Img variant="top" src={'fallback.jpg'} className='itemImg'/>
         }
         { /* isFav? */movie.isFav?
           <Button variant='light' id='favorite-btn' onClick={handleRemoveFav} data-movie-id={movie.id}>  
@@ -38,14 +38,14 @@ function Item({movie}) {
             🖤  
           </Button>
         } 
-        <Card.Body>
+        <Card.Body className='position-relative'>
           <Card.Title id='movieTitle'>{movie.title}</Card.Title>
           <Card.Text>
-            {movie.overview.substring(0,280)}
+            {movie.overview.substring(0,270)}
           </Card.Text>
-          <Button variant="primary" size='sm' className='p-0' >
+          <Button variant="primary btn-sm"  className='btn-sm goToItemDetailButton' >
             <Link to={`/movie?movieId=${movie.id}`} className=' fs-6 p-0' >
-              Detail { movie.id}
+              Detail
             </Link>
           </Button>
         </Card.Body>

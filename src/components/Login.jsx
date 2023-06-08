@@ -6,6 +6,7 @@ import { Redirect} from 'react-router-dom'
 import { AUTH_KEY, emailRegEx, passwordRegEx } from '../../constants'
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from './store/actions'
+import { Button } from 'react-bootstrap'
 /* import state from 'sweetalert/typings/modules/state' */
 
 
@@ -73,11 +74,11 @@ function Login() {
   return (
     <>
       {token && <Redirect to="/listado" />}
-      <form onSubmit={onSubmit} action="">
-        <label htmlFor="">Email <input type="text" name='email' /></label>
+      <form onSubmit={onSubmit} className='logInForm'>
+        <label className='mt-4' htmlFor='email'>Email</label><input type="text" name='email' className='mt-1'/>
         <br />
-        <label htmlFor="">Password <input type="text" name='password' /></label>
-        <button type='submit'  >Entrar</button>
+        <label className='mt-4'>Password </label><input type="text" name='password' className='mt-1'/>
+        <Button type='submit' className='d-block btn-sm mt-4'  >Entrar</Button>
       </form>
     </>
   )

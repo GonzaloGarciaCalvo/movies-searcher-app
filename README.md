@@ -7,10 +7,10 @@ This app is based in the app from Alkemy Skills Up course, spleating and reusing
 
 
 ## Libraries
-react-router-dom
-redux, react-redux, redux-thunk
-redux-persist
-@redux-devtools/extension  ( to aloading the use of thunk and redux-persist simultaneously )
-bootstrap, react-boootstrap
-sweetalert
+react-router-dom.
+redux, react-redux, redux-thunk.
+redux-persist.
+@redux-devtools/extension  ( to aloading the use of thunk and redux-persist simultaneously ).
+bootstrap, react-boootstrap.
+sweetalert2.
 

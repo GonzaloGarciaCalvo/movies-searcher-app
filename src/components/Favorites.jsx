@@ -9,15 +9,6 @@ function Favorites() {
   const favoritesRedux = useSelector( state => state.favs.favorites)
   const token = useSelector( state => state.auth.token)
 
-  /* const [favorites, setFavorites] = useState([])
-  useEffect( ()=>{
-    const favsInLocalStorage = localStorage.getItem('favs')
-    if(favsInLocalStorage != null) {
-      const favsArr = JSON.parse(favsInLocalStorage)
-      setFavorites(favsArr)
-    }
-  }, []) */
-
   return (
     <section>
       {!token && <Redirect to={'/'} />}

@@ -3,13 +3,19 @@
   //GET_FAVS: "GET_FAVS"
 } */
 
-export const logintypes = {
+const logintypes = {
   USER_LOGIN: "USER_LOGIN",
   USER_LOGOUT: "USER_LOGOUT"
 }
 
-export const favsTypes = {
+const favsTypes = {
   ADD_REMOVE_FAVS: "ADD_REMOVE_FAVS",
   ADDTOFAVS: "ADDTOFAVS",
   REMOVEFROMFAVS: "REMOVEFROMFAVS"
 }
+
+const discoverTypes = {
+  GET_DiSCOVERY_LIST: "GET_DiSCOVERY_LIST"
+}
+
+export {logintypes, favsTypes, discoverTypes}

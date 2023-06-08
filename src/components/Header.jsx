@@ -5,14 +5,14 @@ import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogOut } from './store/actions'
 
-function Header({favQuantity, favorites}) {
+function Header() {
   const dispatch = useDispatch()
   const history = useHistory()
   const favoritesRedux = useSelector(state => state.favs.favorites)
-  useEffect( ()=> {
+  /* useEffect( ()=> {
     console.log("favoritesRedux: ", favoritesRedux)
 
-  },[favoritesRedux])
+  },[favoritesRedux]) */
   const handleLogOut = () => {
     dispatch(userLogOut())
     history.push("./")
@@ -22,7 +22,7 @@ function Header({favQuantity, favorites}) {
       <nav className='d-flex flex-row justify-content-start align-items-center m-3 position-relative '>
         <ul className='d-flex flex-row justify-content-start m-0'>
           <li className='m-2'>
-            <Link to={'/'}>Home</Link>
+            <NavLink activeStyle={{pointerEvents: 'none'}} to={'/'}>Home</NavLink>
           </li>
           <li className='m-2'>
             <NavLink activeStyle={{pointerEvents: 'none'}} to={'/listado'}>Listado</NavLink>

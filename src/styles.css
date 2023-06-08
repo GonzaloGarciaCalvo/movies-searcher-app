@@ -111,3 +111,22 @@ footer {
 .favoritesBox {
   min-height: 60vh;
 }
+
+/* LOGIN */
+.logInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ITEM */
+.itemImg {
+  min-height: 25em;
+}
+.goToItemDetailButton {
+  position: absolute;
+  bottom: 0em;
+  padding-top: 0;
+  padding-bottom: 0;
+}

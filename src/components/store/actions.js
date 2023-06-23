@@ -50,6 +50,9 @@ const addFavs = (e) =>({
   type: "ADDTOFAVS",
   payload: e
 })
+const resetFavs = () => ({
+  type: "RESETFAVS"
+})
 const removeFavs = (e)=> ({
   type: "REMOVEFROMFAVS",
   payload: e
@@ -71,15 +74,13 @@ const getDiscoveryList = () =>{
       }
       });
       const dataRes = await response.json()
-      const token = await dataRes.request_token
-      /* localStorage.setItem("moviesSearcherToken", token) */
+      const dataMovies = await dataRes.results
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
       dispatch({
         type: GET_DiSCOVERY_LIST,
-        token: token,
-        //userId: data.localId,
+        dataMovies
       });
     } catch (error) {
       throw error;
@@ -88,5 +89,5 @@ const getDiscoveryList = () =>{
 }
 
 
-export {userLogin, userLogOut, addFavs, removeFavs, addRemoveFavs, getDiscoveryList}
+export {userLogin, userLogOut, addFavs, removeFavs, resetFavs, addRemoveFavs, getDiscoveryList}
 /* export {userLogin, userLogOut} */

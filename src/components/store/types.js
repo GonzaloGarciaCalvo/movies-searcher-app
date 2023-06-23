@@ -11,7 +11,8 @@ const logintypes = {
 const favsTypes = {
   ADD_REMOVE_FAVS: "ADD_REMOVE_FAVS",
   ADDTOFAVS: "ADDTOFAVS",
-  REMOVEFROMFAVS: "REMOVEFROMFAVS"
+  REMOVEFROMFAVS: "REMOVEFROMFAVS",
+  RESETFAVS: "RESETFAVS"
 }
 
 const discoverTypes = {

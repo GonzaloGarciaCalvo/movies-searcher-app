@@ -18,7 +18,7 @@ function App() {
 
 
   const [favorites, setFavorites] = useState([])
-  const favsRedux = useSelector( state => state)
+  const favsRedux = useSelector( state => state.favs.favorites)
   console.log("favsRedux: ", favsRedux)
   //const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ function App() {
   //   }
   // }, [])
 
-  const tempMoviesInFavs = getMoviesInFavsfromLS()
+  /* const tempMoviesInFavs = getMoviesInFavsfromLS() */
 
   // const addOrRemoveFavs = (e) => {
   //   const btn = e.currentTarget;
@@ -62,7 +62,7 @@ function App() {
 
   return (
     <>
-        <Header favQuantity={favorites.length} favorites={favorites}/>
+        <Header favQuantity={favsRedux.length} favorites={favsRedux}/>
         <main className="container-fluid">
           <Switch>
             <Route exact path="/" component={Login} />

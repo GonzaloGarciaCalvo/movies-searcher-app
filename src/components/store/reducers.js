@@ -1,7 +1,6 @@
 import { /* types,  */logintypes, favsTypes } from "./types";
-
 const {USER_LOGIN, USER_LOGOUT} = logintypes
-const {ADDTOFAVS, REMOVEFROMFAVS, ADD_REMOVE_FAVS} = favsTypes
+const {ADDTOFAVS, REMOVEFROMFAVS, RESETFAVS} = favsTypes
 
 const initialState = {
   token: null,
@@ -16,8 +15,8 @@ const authReducer = (state = initialState, action) => {
         token: action.token
       };
     case USER_LOGOUT:
-      localStorage.favs=[];
-      localStorage.moviesSearcherToken ="";
+      /* localStorage.favs=[];
+      localStorage.moviesSearcherToken =""; */
       console.log("dispatch")
       return {
         ...state, token:null
@@ -52,6 +51,7 @@ const favsReducer = (state = favsInitialState, action) => {
       if (!movieIsInArrayAdd) {
         movieDataAdd.isFav=true
       }
+      console.log("movieDataAdd: ", movieDataAdd)
       return {
         ...state, favorites:[...state.favorites, movieDataAdd]
       }
@@ -73,7 +73,12 @@ const favsReducer = (state = favsInitialState, action) => {
         console.log('Se eliminó la pelicula');
         return {...state, favorites: moviesLeft }
         }
+      case RESETFAVS: 
+      return{
+        ...state, favorites:[]
+      }
 
+    
     /* case ADD_REMOVE_FAVS:
       const btn = e.currentTarget;
       const parent = btn.parentElement; //Card
@@ -101,7 +106,8 @@ const favsReducer = (state = favsInitialState, action) => {
       } */
     default:
       return state;
-  }
+    }
+    const discoveryReducer = (state, action) => {}
 }
 
 export { authReducer, favsReducer };

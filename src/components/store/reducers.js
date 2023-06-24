@@ -1,6 +1,10 @@
-import { /* types,  */logintypes, favsTypes } from "./types";
+import { store } from ".";
+import { logintypes, favsTypes, discoverTypes } from "./types";
+
 const {USER_LOGIN, USER_LOGOUT} = logintypes
 const {ADDTOFAVS, REMOVEFROMFAVS, RESETFAVS} = favsTypes
+const { GET_DiSCOVERY_LIST} = discoverTypes
+
 
 const initialState = {
   token: null,
@@ -15,8 +19,6 @@ const authReducer = (state = initialState, action) => {
         token: action.token
       };
     case USER_LOGOUT:
-      /* localStorage.favs=[];
-      localStorage.moviesSearcherToken =""; */
       console.log("dispatch")
       return {
         ...state, token:null
@@ -34,7 +36,6 @@ const favsInitialState = {
 const favsReducer = (state = favsInitialState, action) => {
   const e= action.payload
   switch (action.type) {
-    /* let  btn ,parent, imgURL, title, oneMovie */
     case ADDTOFAVS:
       const btnAdd = e.currentTarget;
       const parentAdd = btnAdd.parentElement; 
@@ -51,7 +52,6 @@ const favsReducer = (state = favsInitialState, action) => {
       if (!movieIsInArrayAdd) {
         movieDataAdd.isFav=true
       }
-      console.log("movieDataAdd: ", movieDataAdd)
       return {
         ...state, favorites:[...state.favorites, movieDataAdd]
       }
@@ -77,37 +77,49 @@ const favsReducer = (state = favsInitialState, action) => {
       return{
         ...state, favorites:[]
       }
-
-    
-    /* case ADD_REMOVE_FAVS:
-      const btn = e.currentTarget;
-      const parent = btn.parentElement; //Card
-      const imgURL = parent.querySelector('img').getAttribute('src');
-      const title = parent .querySelector('#movieTitle').innerText;
-      const overview = parent.querySelector ('p').innerText;
-      const movieData = {
-        imgURL, 
-        title, 
-        overview,
-        id:btn.dataset.movieId
-      }
-      let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movieData.id);
-      if (!movieIsInArray) {
-        movieData.isFav=true
-      console.log('Se agregó la película');
- 
-      return {
-        ...state, favorites:[...state.favorites, movieData]
-      }
-      } else { // Elimina de favs
-      let moviesLeft = state.favorites.filter(oneMovie => oneMovie.id !== movieData.id)
-      console.log('Se eliminó la pelicula');
-      return {...state, favorites: moviesLeft }
-      } */
     default:
       return state;
     }
-    const discoveryReducer = (state, action) => {}
-}
+  }
 
-export { authReducer, favsReducer };
+  const initialDiscoverystate = {
+    movies: []
+  }
+
+  const discoveryReducer = (state=initialDiscoverystate, action) => {
+    switch (action.type) {
+      case GET_DiSCOVERY_LIST:       
+        function addIsFavKeyToData() {
+          
+            const favorites = action.favoritesRedux
+            const moviesCompare = action.dataMovies
+            if (favorites === null) {
+              for(let item of moviesCompare) { 
+                  item.isFav=false
+                }
+            }
+            if (favorites !== null) {
+              for(let item of moviesCompare) { 
+                const checkIfIsInFavs =  favorites.find(fav => fav.id == item.id)// are diferent types
+                if (checkIfIsInFavs) {
+                  item.isFav=true
+                } else {
+                  item.isFav=false
+                }
+              }
+            }
+            return moviesCompare
+          }
+        const dataProsesed = addIsFavKeyToData()
+
+        return {
+          ...state, movies:dataProsesed
+        }
+      
+      default:
+        return state;
+
+    }
+  }
+
+export { authReducer, favsReducer, discoveryReducer };

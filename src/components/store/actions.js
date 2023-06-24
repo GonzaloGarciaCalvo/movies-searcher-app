@@ -1,15 +1,8 @@
-/* import { types, logintypes } from "./types"; */
-import { /* types,  */logintypes, favsTypes, discoverTypes } from "./types";
+import { logintypes, favsTypes, discoverTypes } from "./types";
+
 const {  ADD_REMOVE_FAVS, USER_LOGIN, USER_LOGOUT } = logintypes
 const {ADDTOFAVS, REMOVEFROMFAVS } = favsTypes
 const { GET_DiSCOVERY_LIST } = discoverTypes
-
-
-/* export const addRemoveFavs = (e)=>({
-  type: ADD_REMOVE_FAVS,
-  e:e
-}) */
-
 
 
 const userLogin = (e) => {
@@ -18,21 +11,18 @@ const userLogin = (e) => {
       console.log("en userLogin")
       const response = await fetch("https://api.themoviedb.org/3/authentication/token/new", {
       headers:{
-        /* Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NGQwNjE0ODQzNjA0MTQ0YTFhNGY0MmZiOTk2ZGZlMiIsInN1YiI6IjY0NjdkYWUxZDE4NTcyMDBlNWEzOGY5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pCUXd8GVHXLUcQW4JzgK8WVFhI1e15XiVyrN1fAi75k', */
         Authorization: `${import.meta.env.VITE_AUTH_KEY}`,
         accept: 'application/json'
       }
       });
       const dataRes = await response.json()
       const token = await dataRes.request_token
-      /* localStorage.setItem("moviesSearcherToken", token) */
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
       dispatch({
         type: USER_LOGIN,
         token: token,
-        //userId: data.localId,
       });
     } catch (error) {
       throw error;
@@ -62,17 +52,10 @@ const addRemoveFavs = (e) =>({
   payload: e
 })
 
-const getDiscoveryList = () =>{
+const getDiscoveryList = (favoritesRedux) =>{
   return async (dispatch) => {
     try {
-      console.log("en userLogin")
-      const response = await fetch("https://api.themoviedb.org/3/authentication/token/new", {
-      headers:{
-        /* Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NGQwNjE0ODQzNjA0MTQ0YTFhNGY0MmZiOTk2ZGZlMiIsInN1YiI6IjY0NjdkYWUxZDE4NTcyMDBlNWEzOGY5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pCUXd8GVHXLUcQW4JzgK8WVFhI1e15XiVyrN1fAi75k', */
-        Authorization: `${import.meta.env.VITE_AUTH_KEY}`,
-        accept: 'application/json'
-      }
-      });
+      const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`);
       const dataRes = await response.json()
       const dataMovies = await dataRes.results
       if (!response.ok) {
@@ -80,7 +63,8 @@ const getDiscoveryList = () =>{
       }
       dispatch({
         type: GET_DiSCOVERY_LIST,
-        dataMovies
+        dataMovies,
+        favoritesRedux
       });
     } catch (error) {
       throw error;
@@ -88,6 +72,4 @@ const getDiscoveryList = () =>{
   }
 }
 
-
 export {userLogin, userLogOut, addFavs, removeFavs, resetFavs, addRemoveFavs, getDiscoveryList}
-/* export {userLogin, userLogOut} */

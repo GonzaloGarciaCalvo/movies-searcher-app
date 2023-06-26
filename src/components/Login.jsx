@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import swal from 'sweetalert'
 import { useHistory} from 'react-router-dom'
-import axios from 'axios'
 import { Redirect} from 'react-router-dom'
-import { AUTH_KEY, emailRegEx, passwordRegEx } from '../../constants'
+import { emailRegEx, passwordRegEx } from '../../constants'
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from './store/actions'
 import { Button } from 'react-bootstrap'
-/* import state from 'sweetalert/typings/modules/state' */
 
 
 function Login() {
-  //const [isLogged, setIsLoged] = useState(false)
-  const history = useHistory()
   const token = useSelector( state => state.auth.token)
   const dispatch = useDispatch()
 
@@ -26,7 +22,6 @@ function Login() {
       return
     }
     if(emailRegEx.test(email) && passwordRegEx.test(password)){
-      //checkUser(e)
       dispatch(userLogin(e))
     } else {
       console.log("password check: ",passwordRegEx.test(password))
@@ -34,7 +29,6 @@ function Login() {
       swal("error en formato de campos");
       console.log("ERROR:  error en formato de campos")
     }
-    //checkUser()
   }
 
   return (

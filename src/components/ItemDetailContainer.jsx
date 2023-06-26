@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { customSwalAlert } from '../../utilities/toast'
 import { useSelector } from 'react-redux'

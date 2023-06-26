@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import {Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import SpinnerLoading from './SpinnerLoading'
 
 function ItemDetail({movie}) {
-  /* const [error, setError] = useState(false) */
+
   let baseUrl = `https://image.tmdb.org/t/p/w400/`
 
   const genresList = movie.genres?.map(item => item.name).join(", ")

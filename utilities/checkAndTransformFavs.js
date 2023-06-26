@@ -1,3 +1,0 @@
-function checkAndTransformFavs () {
-  0
-}

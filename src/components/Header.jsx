@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import Searcher from './Searcher'
 import { Button } from 'react-bootstrap'
@@ -9,10 +9,7 @@ function Header() {
   const dispatch = useDispatch()
   const history = useHistory()
   const favoritesRedux = useSelector(state => state.favs.favorites)
-  /* useEffect( ()=> {
-    console.log("favoritesRedux: ", favoritesRedux)
 
-  },[favoritesRedux]) */
   const handleLogOut = () => {
     dispatch(userLogOut())
     dispatch(resetFavs())

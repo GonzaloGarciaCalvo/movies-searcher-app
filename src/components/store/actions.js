@@ -8,7 +8,7 @@ const { GET_DiSCOVERY_LIST } = discoverTypes
 const userLogin = (e) => {
   return async (dispatch) => {
     try {
-      console.log("en userLogin")
+      console.log("VITE_AUTH_KEY userLogin", import.meta.env.VITE_AUTH_KEY)
       const response = await fetch("https://api.themoviedb.org/3/authentication/token/new", {
       headers:{
         Authorization: `${import.meta.env.VITE_AUTH_KEY}`,

@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Card, Button } from "react-bootstrap";
-import { Link, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import {addFavs, removeFavs} from "./store/actions"
-/* import '../styles.css' */
+
 
 function Item({movie}) {
-  /* const [isFav, setIsFav] = useState(movie.isFav) */
+
   let baseUrl = `https://image.tmdb.org/t/p/w500/`
   const dispatch = useDispatch()
 
@@ -28,7 +28,7 @@ function Item({movie}) {
         : 
         <Card.Img variant="top" src={'fallback.jpg'} className='itemImg'/>
         }
-        { /* isFav? */movie.isFav?
+        { movie.isFav?
           <Button variant='light' id='favorite-btn' onClick={(e)=>handleRemoveFav(e,movie, movie)} data-movie-id={movie.id}>  
           ❤️ 
           </Button> :

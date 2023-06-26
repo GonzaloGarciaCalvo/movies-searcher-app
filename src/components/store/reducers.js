@@ -1,6 +1,7 @@
 import { store } from ".";
 import { logintypes, favsTypes, discoverTypes } from "./types";
 
+
 const {USER_LOGIN, USER_LOGOUT} = logintypes
 const {ADDTOFAVS, REMOVEFROMFAVS, RESETFAVS} = favsTypes
 const { GET_DiSCOVERY_LIST} = discoverTypes
@@ -34,10 +35,15 @@ const favsInitialState = {
 }
 
 const favsReducer = (state = favsInitialState, action) => {
-  const e= action.payload
+  /* const e= action.payload */
+  const e= action.payload?.e
+  const movie = action.payload?.movie
+
+
+ /*  console.log(store.getState().mov.movies) */
   switch (action.type) {
     case ADDTOFAVS:
-      const btnAdd = e.currentTarget;
+      /* const btnAdd = e.currentTarget;
       const parentAdd = btnAdd.parentElement; 
       const imgURLAdd = parentAdd.querySelector('img').getAttribute('src');
       const titleAdd = parentAdd.querySelector('#movieTitle').innerText;
@@ -51,12 +57,17 @@ const favsReducer = (state = favsInitialState, action) => {
       let movieIsInArrayAdd = state.favorites.find(oneMovie => oneMovie.id === movieDataAdd.id);
       if (!movieIsInArrayAdd) {
         movieDataAdd.isFav=true
-      }
+      } */
+      let movieIsInArrayAdd = state.favorites.find(oneMovie => oneMovie.id === movie.id);
+      if (!movieIsInArrayAdd) {
+        movie.isFav=true
+      } 
       return {
-        ...state, favorites:[...state.favorites, movieDataAdd]
+        /* ...state, favorites:[...state.favorites, movieDataAdd] */
+        ...state, favorites:[...state.favorites, movie]
       }
       case REMOVEFROMFAVS:
-        const btn = e.currentTarget;
+        /* const btn = e.currentTarget;
         const parent = btn.parentElement; 
         const imgURL = parent.querySelector('img').getAttribute('src');
         const title = parent .querySelector('#movieTitle').innerText;
@@ -66,10 +77,11 @@ const favsReducer = (state = favsInitialState, action) => {
           title, 
           overview,
           id:btn.dataset.movieId
-        }
-        let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movieData.id);
+        } */
+        /* let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movieData.id); */
+        let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movie.id);
         if (movieIsInArray) { 
-        let moviesLeft = state.favorites.filter(oneMovie => oneMovie.id !== movieData.id)
+        let moviesLeft = state.favorites.filter(oneMovie => oneMovie.id !== movie.id)
         console.log('Se eliminó la pelicula');
         return {...state, favorites: moviesLeft }
         }
@@ -90,7 +102,6 @@ const favsReducer = (state = favsInitialState, action) => {
     switch (action.type) {
       case GET_DiSCOVERY_LIST:       
         function addIsFavKeyToData() {
-          
             const favorites = action.favoritesRedux
             const moviesCompare = action.dataMovies
             if (favorites === null) {

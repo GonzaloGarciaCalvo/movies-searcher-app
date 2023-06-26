@@ -36,20 +36,25 @@ const userLogOut= () => ({
   type: "USER_LOGOUT"
 })
 
-const addFavs = (e) =>({
+/* const addFavs = (e) =>({
   type: "ADDTOFAVS",
   payload: e
+}) */
+const addFavs = (e,movie) =>({
+  type: "ADDTOFAVS",
+  payload:{ e, movie}
 })
+
 const resetFavs = () => ({
   type: "RESETFAVS"
 })
-const removeFavs = (e)=> ({
+/* const removeFavs = (e)=> ({
   type: "REMOVEFROMFAVS",
   payload: e
-})
-const addRemoveFavs = (e) =>({
-  type: "ADD_REMOVE_FAVS",
-  payload: e
+}) */
+const removeFavs = (e, movie)=> ({
+  type: "REMOVEFROMFAVS",
+  payload: {e, movie}
 })
 
 const getDiscoveryList = (favoritesRedux) =>{
@@ -72,4 +77,4 @@ const getDiscoveryList = (favoritesRedux) =>{
   }
 }
 
-export {userLogin, userLogOut, addFavs, removeFavs, resetFavs, addRemoveFavs, getDiscoveryList}
+export {userLogin, userLogOut, addFavs, removeFavs, resetFavs, getDiscoveryList}

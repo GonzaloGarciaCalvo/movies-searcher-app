@@ -6,18 +6,16 @@ import {addFavs, removeFavs} from "./store/actions"
 /* import '../styles.css' */
 
 function Item({movie}) {
-  const [isFav, setIsFav] = useState(movie.isFav)
+  /* const [isFav, setIsFav] = useState(movie.isFav) */
   let baseUrl = `https://image.tmdb.org/t/p/w500/`
   const dispatch = useDispatch()
 
-  const handleAddFav = (e) => {
-    /* setIsFav( val => !val) */
-    dispatch(addFavs(e))
+  const handleAddFav = (e, movie) => {
+    dispatch(addFavs(e, movie))
     movie.isFav = true
   }
-  const handleRemoveFav= (e) => {
-    /* setIsFav( val => !val) */
-    dispatch(removeFavs(e))
+  const handleRemoveFav= (e, movie) => {
+    dispatch(removeFavs(e, movie))
     movie.isFav = false
   }
 
@@ -31,10 +29,10 @@ function Item({movie}) {
         <Card.Img variant="top" src={'fallback.jpg'} className='itemImg'/>
         }
         { /* isFav? */movie.isFav?
-          <Button variant='light' id='favorite-btn' onClick={handleRemoveFav} data-movie-id={movie.id}>  
+          <Button variant='light' id='favorite-btn' onClick={(e)=>handleRemoveFav(e,movie, movie)} data-movie-id={movie.id}>  
           ❤️ 
           </Button> :
-          <Button variant='light' id='favorite-btn' onClick={handleAddFav} data-movie-id={movie.id}>  
+          <Button variant='light' id='favorite-btn' onClick={(e)=>handleAddFav(e,movie, movie)} data-movie-id={movie.id}>  
             🖤  
           </Button>
         } 

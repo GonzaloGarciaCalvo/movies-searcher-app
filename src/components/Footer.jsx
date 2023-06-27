@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer>
       <p>Gonzalo Garcia Calvo</p>
-      <p>Challenge Alkemy Trainee level - Movies searcher</p>
+      <p className='mb-0'>Challenge Alkemy Trainee level - Movies searcher</p>
     </footer>
   )
 }

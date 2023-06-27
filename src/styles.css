@@ -1,11 +1,3 @@
-.htmlStyles {
-  background-color: rgb(22, 21, 21);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 .bodyStyles {
   margin: 0 ;
@@ -18,6 +10,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/******** HEADER  ********/
 ul {
   list-style: none;
 }
@@ -28,14 +21,11 @@ a {
 a:hover {
   color: burlywood;
 }
-/******** HEADER  ********/
 .logOutBtn {
-  /* height: 48px; */
   position:absolute;
   right: 0;
 }
 .favsQuantityIndicator {
-  /* display: inline-block; */
   background-color: red;
   border-radius: 50%;
   font-size: 1em;
@@ -46,15 +36,13 @@ a:hover {
   justify-content: center;
   align-items: center;
 }
-/* .favsQuantityIndicator p {
-  display: inline-block;
-  margin: 0;
-} */
+
 /*////////////////////////////////////////*/
 .listContainer{
   min-height: 65vh;
 }
 
+/*** ITEM  ***/
 .myCard {
   border: 1px solid wheat;
   margin-bottom: 2em;
@@ -65,7 +53,17 @@ a:hover {
 .card-body {
   padding:0.5em 0 0 0
 }
+.itemImg {
+  min-height: 25em;
+}
+.goToItemDetailButton {
+  position: absolute;
+  bottom: 0em;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
+/** FOOTER **/ 
 footer {
   margin-top: 4em;
   background-color: rgb(35, 14, 14);
@@ -87,7 +85,6 @@ footer {
 #favorite-btn {
   width: 30px;
   height: 30px;
-  /* background-color: white; */
   border-radius: 50%;
   border-color: black;
   display: flex;
@@ -118,15 +115,6 @@ footer {
   flex-direction: column;
   justify-content:center;
   align-items:center;
+  min-height: 60vh
 }
 
-/* ITEM */
-.itemImg {
-  min-height: 25em;
-}
-.goToItemDetailButton {
-  position: absolute;
-  bottom: 0em;
-  padding-top: 0;
-  padding-bottom: 0;
-}

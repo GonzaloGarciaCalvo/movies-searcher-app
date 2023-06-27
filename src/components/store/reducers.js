@@ -1,11 +1,9 @@
 import { store } from ".";
 import { logintypes, favsTypes, discoverTypes } from "./types";
 
-
 const {USER_LOGIN, USER_LOGOUT} = logintypes
 const {ADDTOFAVS, REMOVEFROMFAVS, RESETFAVS} = favsTypes
 const { GET_DiSCOVERY_LIST} = discoverTypes
-
 
 const initialState = {
   token: null,
@@ -35,50 +33,18 @@ const favsInitialState = {
 }
 
 const favsReducer = (state = favsInitialState, action) => {
-  /* const e= action.payload */
-  const e= action.payload?.e
   const movie = action.payload?.movie
 
-
- /*  console.log(store.getState().mov.movies) */
   switch (action.type) {
     case ADDTOFAVS:
-      /* const btnAdd = e.currentTarget;
-      const parentAdd = btnAdd.parentElement; 
-      const imgURLAdd = parentAdd.querySelector('img').getAttribute('src');
-      const titleAdd = parentAdd.querySelector('#movieTitle').innerText;
-      const overviewAdd = parentAdd.querySelector ('p').innerText;
-      const movieDataAdd = {
-        poster_path:imgURLAdd, 
-        title:titleAdd, 
-        overview:overviewAdd,
-        id:btnAdd.dataset.movieId
-      }
-      let movieIsInArrayAdd = state.favorites.find(oneMovie => oneMovie.id === movieDataAdd.id);
-      if (!movieIsInArrayAdd) {
-        movieDataAdd.isFav=true
-      } */
       let movieIsInArrayAdd = state.favorites.find(oneMovie => oneMovie.id === movie.id);
       if (!movieIsInArrayAdd) {
         movie.isFav=true
       } 
       return {
-        /* ...state, favorites:[...state.favorites, movieDataAdd] */
         ...state, favorites:[...state.favorites, movie]
       }
       case REMOVEFROMFAVS:
-        /* const btn = e.currentTarget;
-        const parent = btn.parentElement; 
-        const imgURL = parent.querySelector('img').getAttribute('src');
-        const title = parent .querySelector('#movieTitle').innerText;
-        const overview = parent.querySelector ('p').innerText;
-        const movieData = {
-          poster_path:imgURL, 
-          title, 
-          overview,
-          id:btn.dataset.movieId
-        } */
-        /* let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movieData.id); */
         let movieIsInArray = state.favorites.find(oneMovie => oneMovie.id === movie.id);
         if (movieIsInArray) { 
         let moviesLeft = state.favorites.filter(oneMovie => oneMovie.id !== movie.id)
@@ -111,7 +77,8 @@ const favsReducer = (state = favsInitialState, action) => {
             }
             if (favorites !== null) {
               for(let item of moviesCompare) { 
-                const checkIfIsInFavs =  favorites.find(fav => fav.id == item.id)// are diferent types
+                const checkIfIsInFavs =  favorites.find(fav => fav.id == item.id)
+                // are diferent types, string and number, so, don´t use ===
                 if (checkIfIsInFavs) {
                   item.isFav=true
                 } else {
@@ -122,14 +89,11 @@ const favsReducer = (state = favsInitialState, action) => {
             return moviesCompare
           }
         const dataProsesed = addIsFavKeyToData()
-
         return {
           ...state, movies:dataProsesed
         }
-      
       default:
         return state;
-
     }
   }
 

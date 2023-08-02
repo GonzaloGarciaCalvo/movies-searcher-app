@@ -1,9 +1,8 @@
-import React from 'react'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import Searcher from './Searcher'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogOut, resetFavs } from './store/actions'
+import { userLogOut, resetFavs } from '../store/actions'
 
 function Header() {
   const dispatch = useDispatch()

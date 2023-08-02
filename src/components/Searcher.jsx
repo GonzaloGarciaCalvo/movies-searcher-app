@@ -1,11 +1,9 @@
-import React, {useRef} from 'react'
 import  Button  from 'react-bootstrap/Button'
 import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
 
 function Searcher() {
   const history = useHistory()
-  const prevSearch = useRef()
   
   const handleSubmit = (e) => {
     e.preventDefault()

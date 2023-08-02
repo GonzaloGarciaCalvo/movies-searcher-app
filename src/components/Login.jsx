@@ -1,36 +1,37 @@
-import React from 'react'
 import swal from 'sweetalert'
-import { useHistory} from 'react-router-dom'
 import { Redirect} from 'react-router-dom'
-import { emailRegEx, passwordRegEx } from '../../constants'
+import { emailRegEx, passwordRegEx } from '../utilities/constants'
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogin } from './store/actions'
+import { userLogin } from '../store/actions'
+import { login } from '../features/auth';
 import { Button } from 'react-bootstrap'
-
+import { useEffect } from 'react';
 
 function Login() {
-  const token = useSelector( state => state.auth.token)
+  const token = useSelector( state => state?.auth?.token)
   const dispatch = useDispatch()
-
+  const stateAll = useSelector(state => state)
+  console.log("en login")
+  console.log("token: ", token)
   const onSubmit = (e) => {
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
     if (!email || !password) {
-      console.log("ERROR: los campos no pueden estar vacios")
       swal("ERROR: los campos no pueden estar vacios");
       return
     }
     if(emailRegEx.test(email) && passwordRegEx.test(password)){
-      dispatch(userLogin(e))
+      /* dispatch(userLogin(e)) */
+      dispatch(login())
     } else {
-      console.log("password check: ",passwordRegEx.test(password))
-      console.log("email check: ",emailRegEx.test(email))
       swal("error en formato de campos");
-      console.log("ERROR:  error en formato de campos")
     }
   }
-
+  useEffect( () => {
+    console.log("token del state en login", token)
+  },[token])
+  //setTimeout(()=>console.log("token del state en login"),300)
   return (
     <>
       {token && <Redirect to="/listado" />}

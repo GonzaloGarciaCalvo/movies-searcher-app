@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Redirect} from 'react-router-dom'
 import Item from './Item'
-import { customSwalAlert } from '../../utilities/toast'
+import { customSwalAlert } from '../utilities/toast'
 import SpinnerLoading from './SpinnerLoading'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDiscoveryList } from './store/actions'
-
+import { getDiscoveryList } from '../store/actions'
 
 function DiscoverList() {
 
-  const [dataToRender, setDataToRender] = useState([])
   const [loading, setLoading] = useState(true)
   const token = useSelector( state => state.auth.token)
-  const favoritesRedux = useSelector( state => state.favs.favorites)
-  const movies = useSelector( (state) => state.mov.movies)
+  const favoritesRedux = useSelector( state => state.favs?.favorites)
+  const movies = useSelector( (state) => state.mov?.movies)
   const dispatch = useDispatch()
-
   
   useEffect( () => {
-      const data =  dispatch(getDiscoveryList(favoritesRedux))
-      setLoading(false)    
+    dispatch(getDiscoveryList(favoritesRedux))
+    setLoading(false)    
   }, [])
 
   return (

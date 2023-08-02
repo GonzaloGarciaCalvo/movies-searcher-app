@@ -1,5 +1,3 @@
-import React, {useState, useEffect} from 'react'
-import FavItem from './FavItem'
 import Item from './Item'
 import { Redirect} from 'react-router-dom'
 import { useSelector } from 'react-redux'

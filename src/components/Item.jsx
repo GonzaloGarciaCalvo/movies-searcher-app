@@ -1,8 +1,7 @@
-import React from 'react'
 import { Card, Button } from "react-bootstrap";
 import { Link} from 'react-router-dom';
-import { useDispatch} from 'react-redux';
-import {addFavs, removeFavs} from "./store/actions"
+import { useDispatch, useSelector} from 'react-redux';
+import { addFavs, removeFavs } from "../features/favs";
 
 
 function Item({movie}) {
@@ -11,14 +10,14 @@ function Item({movie}) {
   const dispatch = useDispatch()
 
   const handleAddFav = (e, movie) => {
-    dispatch(addFavs(e, movie))
-    movie.isFav = true
+    dispatch(addFavs( movie))
   }
   const handleRemoveFav= (e, movie) => {
-    dispatch(removeFavs(e, movie))
-    movie.isFav = false
+    dispatch(removeFavs( movie))
   }
+  const favs = useSelector( state => state.favs.favorites)
 
+  const movieIsFav = favs?.find(item => item.id === movie.id)? true : false
 
   return (
     <div className='col-3 p-2'>
@@ -28,7 +27,7 @@ function Item({movie}) {
         : 
         <Card.Img variant="top" src={'fallback.jpg'} className='itemImg'/>
         }
-        { movie.isFav?
+        { /* movie.isFav? */movieIsFav?
           <Button variant='light' id='favorite-btn' onClick={(e)=>handleRemoveFav(e,movie, movie)} data-movie-id={movie.id}>  
           ❤️ 
           </Button> :

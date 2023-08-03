@@ -7,7 +7,7 @@ export function useFetch (URL:string, dependenci:string|null) {
   const [ error, setError ] = useState<string | null>('')
   /* const [data , setData] = useState<searchType | movieDetail>({} as searchType | movieDetail) */
   const [data , setData] = useState<any>(null)
-  console.log("data: ", data)
+  console.log("data en useFetch: ", data)
   useEffect( () => {
     const controller = new AbortController()
     const {signal} = controller

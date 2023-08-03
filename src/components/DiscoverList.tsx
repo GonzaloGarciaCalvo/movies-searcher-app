@@ -14,24 +14,25 @@ function DiscoverList() {
   const [loading, setLoading] = useState(true)
   const token = useSelector( (state:state) => state.auth.token)
   const favoritesRedux = useSelector( (state:state) => state.favs?.favorites)
-  const movies = useSelector( (state:state) => state.mov?.movies)
+  const movies = useSelector( (state:state) => state.mov.movies)
   const dispatch = useAppDispatch()
   
   useEffect( () => {
     dispatch(discoveryList())
     setLoading(false)    
   }, [])
-
+  console.log("token en discoveliList: ", token)
+  console.log("movies", movies)
   return (
     <>
       {loading && <SpinnerLoading />}
       {!token && <Redirect to="/" />}
-      <div className='row listContainer'>
-        { movies?
+      {/* <div className='row listContainer'>
+        { movies.length>0?
           movies.map(movie => <Item  key={movie.id} movie={movie}/>)
           : null
         }
-      </div>
+      </div> */}
     </>
   )
 }

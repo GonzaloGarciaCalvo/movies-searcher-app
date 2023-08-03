@@ -9,8 +9,6 @@ import { persistStore, persistReducer, FLUSH,
   PURGE,
   REGISTER, } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-//import {/* authReducer,  *//* favsReducer, */ discoveryReducer} from './reducers';
-import { authSlice/* , favsSlice, discoverySlice */ } from '../features/auth';
 import authReducer from '../features/auth'
 import favsReducer from '../features/favs'
 import movSliceReducer from '../features/mov'
@@ -21,7 +19,6 @@ export const useAppDispatch: () => AppDispatch = useDispatch
 
 const rootReducer = combineReducers({ // va configureStore
   auth: authReducer,
-  /* auth:authSlice, */
   favs: favsReducer,
   mov: movSliceReducer
 });
@@ -34,16 +31,12 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  /* reducer:{
-    auth: authReducer,
-    favs: favsReducer,
-  } */
   reducer:persistedReducer, 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
+      /* serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      }, */
     }),
 });
 const persistor = persistStore(store);

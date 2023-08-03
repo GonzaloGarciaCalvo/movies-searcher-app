@@ -13,7 +13,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (e) => {
     try {
-      console.log("en login")
+      console.log("en login auth ")
       const response = await fetch(`${baseUrl}/3/authentication/token/new`, {
       headers:{
         Authorization: `${import.meta.env.VITE_AUTH_KEY}`,

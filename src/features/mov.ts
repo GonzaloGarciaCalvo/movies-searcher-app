@@ -5,15 +5,16 @@ import { movieType } from "../types/movie.type";
 
 export const discoveryList = createAsyncThunk(  
   "auth/login",
-  async (asyncThunk) => {
+  async () => {
     try {
-      console.log("en userLogin")
+      console.log("en discoveryList mov")
       const response = await fetch(
         `${baseUrl}/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
         /* {signal} */
       );
       const dataRes = await response.json()
       const dataMovies = await dataRes.results
+      console.log("data res en discoveryList: ", dataMovies)
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
@@ -25,7 +26,12 @@ export const discoveryList = createAsyncThunk(
     } */
   })
 
-  const initialState = {
+  export interface initialMovState {
+    movies:movieType[];
+    loading:Boolean;
+    error:Boolean
+  }
+  const initialState:initialMovState = {
     movies: [],
     loading:false,
     error:false,
@@ -50,7 +56,7 @@ export const discoveryList = createAsyncThunk(
         state.movies = action.payload
         console.log("en discoveryList.fulfilled")
         console.log("payload: ", action.payload)
-        console.log("state: ", current(state))
+        console.log("state mov en features: ", current(state))
         console.log("state.token: ", state.movies)
       })
       .addCase(discoveryList.rejected, (state, action) => {

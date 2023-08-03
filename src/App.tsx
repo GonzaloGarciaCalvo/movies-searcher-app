@@ -9,11 +9,12 @@ import { Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css'
 import { useSelector } from 'react-redux';
+import {state} from './types/state.type'
 
 
 function App() {
 
-  const favsRedux = useSelector( state => state.favs?.favorites)
+  const favsRedux = useSelector( (state:state) => state.favs?.favorites)
 
   return (
     <>

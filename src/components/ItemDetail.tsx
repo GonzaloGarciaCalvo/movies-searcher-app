@@ -1,7 +1,10 @@
 import React from 'react'
 import SpinnerLoading from './SpinnerLoading'
+import { moviePropType } from '../types/movie.type'
+import { propMovieDetail } from '../types/movieDetail.type'
 
-function ItemDetail({movie}) {
+
+function ItemDetail({movie}:propMovieDetail) {
 
   let baseUrl = `https://image.tmdb.org/t/p/w400/`
 

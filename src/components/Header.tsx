@@ -2,15 +2,20 @@ import { Link, NavLink, useHistory } from 'react-router-dom'
 import Searcher from './Searcher'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogOut, resetFavs } from '../store/actions'
+import { useAppDispatch } from '../store'
+import { logout } from '../features/auth'
+import { resetFavs } from '../features/favs'
+import { state } from '../types/state.type'
+
+//import { userLogOut, resetFavs } from '../store/actions'
 
 function Header() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const history = useHistory()
-  const favoritesRedux = useSelector(state => state.favs.favorites)
+  const favoritesRedux = useSelector((state:state) => state.favs.favorites)
 
   const handleLogOut = () => {
-    dispatch(userLogOut())
+    dispatch(logout())
     dispatch(resetFavs())
     history.push("./")
   }

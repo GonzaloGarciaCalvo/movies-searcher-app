@@ -1,15 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { baseUrl } from "../utilities/constants";
+import { movieType } from "../types/movie.type";
 
 
-export const discoveryList = createAsyncThunk(  // modificar 
+export const discoveryList = createAsyncThunk(  
   "auth/login",
   async (asyncThunk) => {
     try {
       console.log("en userLogin")
       const response = await fetch(
         `${baseUrl}/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
-        {signal}
+        /* {signal} */
       );
       const dataRes = await response.json()
       const dataMovies = await dataRes.results
@@ -25,9 +26,9 @@ export const discoveryList = createAsyncThunk(  // modificar
   })
 
   const initialState = {
+    movies: [],
     loading:false,
-    fulfilled:false,
-    movies: []
+    error:false,
   }
 
   export const movSlice = createSlice({
@@ -46,7 +47,7 @@ export const discoveryList = createAsyncThunk(  // modificar
           state.error = action.payload.error.message
         }
         state.loading = false
-        state.token = action.payload.e
+        state.movies = action.payload
         console.log("en discoveryList.fulfilled")
         console.log("payload: ", action.payload)
         console.log("state: ", current(state))
@@ -54,10 +55,10 @@ export const discoveryList = createAsyncThunk(  // modificar
       })
       .addCase(discoveryList.rejected, (state, action) => {
         state.loading = false
-        state.error = "Error at discoveryList"
+        state.error = true
       })
     }
   })
 
-  export const {logout} = authSlice.actions;
+  /* export const {logout} = authSlice.actions; */
 export default movSlice.reducer

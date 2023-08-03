@@ -2,20 +2,22 @@ import { Card, Button } from "react-bootstrap";
 import { Link} from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { addFavs, removeFavs } from "../features/favs";
+import { moviePropType, movieType } from "../types/movie.type";
+import { state } from "../types/state.type";
 
 
-function Item({movie}) {
+function Item({movie}:moviePropType) {
 
   let baseUrl = `https://image.tmdb.org/t/p/w500/`
   const dispatch = useDispatch()
 
-  const handleAddFav = (e, movie) => {
+  const handleAddFav = (movie:movieType) => {
     dispatch(addFavs( movie))
   }
-  const handleRemoveFav= (e, movie) => {
+  const handleRemoveFav= ( movie:movieType) => {
     dispatch(removeFavs( movie))
   }
-  const favs = useSelector( state => state.favs.favorites)
+  const favs = useSelector( (state:state) => state.favs.favorites)
 
   const movieIsFav = favs?.find(item => item.id === movie.id)? true : false
 
@@ -28,10 +30,10 @@ function Item({movie}) {
         <Card.Img variant="top" src={'fallback.jpg'} className='itemImg'/>
         }
         { /* movie.isFav? */movieIsFav?
-          <Button variant='light' id='favorite-btn' onClick={(e)=>handleRemoveFav(e,movie, movie)} data-movie-id={movie.id}>  
+          <Button variant='light' id='favorite-btn' onClick={(e)=>handleRemoveFav( movie)} data-movie-id={movie.id}>  
           ❤️ 
           </Button> :
-          <Button variant='light' id='favorite-btn' onClick={(e)=>handleAddFav(e,movie, movie)} data-movie-id={movie.id}>  
+          <Button variant='light' id='favorite-btn' onClick={(e)=>handleAddFav(movie)} data-movie-id={movie.id}>  
             🖤  
           </Button>
         } 

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { customSwalAlert } from '../../utilities/toast.js'
+import { customSwalAlert } from '../../utilities/toast'
 
-export function useFetch (URL, dependenci) {
+export function useFetch (URL:string, dependenci:string|null) {
 
-  const [ loading, setLoading ] = useState(true)
-  const [ error, setError ] = useState('')
-  const [data , setData] = useState(null)
+  const [ loading, setLoading ] = useState<Boolean>(true)
+  const [ error, setError ] = useState<string | null>('')
+  /* const [data , setData] = useState<searchType | movieDetail>({} as searchType | movieDetail) */
+  const [data , setData] = useState<any>(null)
   console.log("data: ", data)
   useEffect( () => {
     const controller = new AbortController()
@@ -16,7 +17,7 @@ export function useFetch (URL, dependenci) {
         const dataApi = await response.json()
         console.log("dataApi: ",dataApi)
           setData(dataApi)
-        } catch(error) {
+        } catch(error:any) {
             setError(error.message)
             customSwalAlert() 
             console.log("ERROR: ", error.message)

@@ -7,14 +7,16 @@ import { login } from '../features/auth';
 import { Button } from 'react-bootstrap'
 import { useEffect } from 'react';
 import { state } from '../types/state.type';
-import { useAppDispatch } from '../store';
+import { RootState, useAppDispatch } from '../store';
 
 function Login() {
-  const token = useSelector( (state:state) => state?.auth?.token)
+  const token = useSelector( (state:RootState) => state?.auth?.token)
   const dispatch = useAppDispatch()
+  /* const dispatch = useDispatch() */
   const stateAll = useSelector(state => state)
   console.log("en login")
   console.log("token: ", token)
+  console.log("state en Login: ", stateAll)
   const onSubmit = (e:React.SyntheticEvent) => {
     e.preventDefault()
     /* const email = e.target.email.value

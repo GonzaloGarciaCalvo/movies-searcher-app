@@ -1,7 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { combineReducers, applyMiddleware } from 'redux';
 import { configureStore } from '@reduxjs/toolkit'
 import { composeWithDevTools } from '@redux-devtools/extension';
-import thunk from 'redux-thunk';
+//import thunk from 'redux-thunk';
 import { persistStore, persistReducer, FLUSH,
   REHYDRATE,
   PAUSE,
@@ -11,17 +11,20 @@ import { persistStore, persistReducer, FLUSH,
 import storage from "redux-persist/lib/storage";
 import authReducer from '../features/auth'
 import favsReducer from '../features/favs'
-import movSliceReducer from '../features/mov'
+import movReducer from '../features/mov'
 import { useDispatch } from 'react-redux'
 
 export type AppDispatch = typeof store.dispatch
 export const useAppDispatch: () => AppDispatch = useDispatch 
 
-const rootReducer = combineReducers({ // va configureStore
+
+const rootReducer = combineReducers({ 
   auth: authReducer,
   favs: favsReducer,
-  mov: movSliceReducer
+  mov: movReducer
 });
+export type RootState = ReturnType< typeof rootReducer >
+
 
 const persistConfig = {
 	key: "root",
@@ -32,11 +35,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer:persistedReducer, 
+  devTools: true,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      /* serializableCheck: {
+      serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      }, */
+      },
     }),
 });
 const persistor = persistStore(store);

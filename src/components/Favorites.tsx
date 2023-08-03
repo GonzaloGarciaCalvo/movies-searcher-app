@@ -2,11 +2,12 @@ import Item from './Item'
 import { Redirect} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { state } from '../types/state.type'
+import { RootState } from '../store'
 
 function Favorites() {
 
-  const favoritesRedux = useSelector( (state:state) => state.favs.favorites)
-  const token = useSelector( (state:state) => state.auth.token)
+  const favoritesRedux = useSelector( (state:RootState) => state.favs.favorites)
+  const token = useSelector( (state:RootState) => state.auth.token)
 
   return (
     <section>

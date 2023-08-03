@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from 'react-redux'
 /* import { getDiscoveryList } from '../store/actions' */
 import { state } from '../types/state.type'
 import { discoveryList } from '../features/mov'
-import { useAppDispatch } from '../store';
+import { RootState, useAppDispatch } from '../store';
 
 function DiscoverList() {
 
   const [loading, setLoading] = useState(true)
-  const token = useSelector( (state:state) => state.auth.token)
-  const favoritesRedux = useSelector( (state:state) => state.favs?.favorites)
-  const movies = useSelector( (state:state) => state.mov.movies)
+  const token = useSelector( (state:RootState) => state.auth.token)
+  const favoritesRedux = useSelector( (state:RootState) => state.favs?.favorites)
+  const movies = useSelector( (state:RootState) => state.mov.movies)
   const dispatch = useAppDispatch()
   
   useEffect( () => {
@@ -27,12 +27,12 @@ function DiscoverList() {
     <>
       {loading && <SpinnerLoading />}
       {!token && <Redirect to="/" />}
-      {/* <div className='row listContainer'>
+      <div className='row listContainer'>
         { movies.length>0?
           movies.map(movie => <Item  key={movie.id} movie={movie}/>)
           : null
         }
-      </div> */}
+      </div>
     </>
   )
 }

@@ -48,16 +48,17 @@ export const discoveryList = createAsyncThunk(
         console.log("en discoveryList.pending")
       })
       .addCase(discoveryList.fulfilled, (state, action) => {
-        console.log("action.payload: ",action.payload)
+        console.log("action.payload en discoveryList.fulfilled: ",action.payload)
         if (action.payload.error) {
-          state.error = action.payload.error.message
+          /* state.error = action.payload.error.message */
+          state.error = true
         }
         state.loading = false
         state.movies = action.payload
         console.log("en discoveryList.fulfilled")
         console.log("payload: ", action.payload)
         console.log("state mov en features: ", current(state))
-        console.log("state.token: ", state.movies)
+        console.log("state.movies: ", state.movies)
       })
       .addCase(discoveryList.rejected, (state, action) => {
         state.loading = false

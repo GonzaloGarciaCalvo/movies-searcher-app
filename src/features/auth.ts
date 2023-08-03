@@ -22,7 +22,7 @@ export const login = createAsyncThunk(
       });
       const dataRes = await response.json()
       const token = await dataRes.request_token
-      console.log("token: ", token)
+      console.log("token en login auth: ", token)
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
@@ -41,7 +41,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.token = initialState.token
+      state.token = null
     }
   },
   extraReducers: builder => {
@@ -58,9 +58,9 @@ export const authSlice = createSlice({
       state.loading = false
       state.token = action.payload
       console.log("en login.fulfilled")
-      console.log("payload: ", action.payload)
+      console.log("payload en login.fulfilled: ", action.payload)
       console.log("state: ", current(state))
-      console.log("state.token: ", state.token)
+      console.log("state.token en fetures auth: ", state.token)
     })
     .addCase(login.rejected, (state, action) => {
       state.loading = false

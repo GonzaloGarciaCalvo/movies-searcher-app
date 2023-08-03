@@ -1,8 +1,13 @@
+import { initialFavState } from "../types/favs.type";
+import { movieType } from "../types/movie.type";
 import {  createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 
 
-const initialState = {
-  favorites:  []
+
+const initialState:initialFavState = {
+  favorites: [],
+  loading:false,
+  error:false
 }
 
 export const favsSlice = createSlice({
@@ -10,7 +15,7 @@ export const favsSlice = createSlice({
   initialState,
   reducers: {
     addFavs:(state,action) =>{
-      let movie = action.payload
+      let movie:movieType = action.payload
       let movieIsInArrayAdd = state.favorites.find(oneMovie => oneMovie.id === movie.id);
       /* if (!movieIsInArrayAdd) {
         action.payload.isFav=true
@@ -32,7 +37,7 @@ export const favsSlice = createSlice({
       state.favorites = moviesLeft
       }
     },
-    resetFavs:() => {
+    resetFavs:(state) => {
       state.favorites = []
     }
   } 

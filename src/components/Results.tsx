@@ -2,6 +2,7 @@ import Item from './Item'
 import SpinnerLoading from './SpinnerLoading'
 import { Redirect } from 'react-router'
 import { useFetch } from './hooks/useFetch'
+import { movieType } from '../types/movie.type'
 
 function Results() {
   const query = new URLSearchParams(window.location.search)
@@ -14,8 +15,8 @@ function Results() {
       {!keyword && <Redirect to={'/listado'} />}
       { loading && <SpinnerLoading />}
       {
-        data?.results.length>0? 
-          data?.results.map(item => <Item key={item.id} movie={item}  />)
+        data?.results?.length>0? 
+          data?.results?.map((item:movieType) => <Item key={item.id} movie={item}  />)
           :
           <h1>No se encontró películas con esa palabra clave</h1>
       }

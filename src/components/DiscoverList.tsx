@@ -4,18 +4,21 @@ import Item from './Item'
 import { customSwalAlert } from '../utilities/toast'
 import SpinnerLoading from './SpinnerLoading'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDiscoveryList } from '../store/actions'
+/* import { getDiscoveryList } from '../store/actions' */
+import { state } from '../types/state.type'
+import { discoveryList } from '../features/mov'
+import { useAppDispatch } from '../store';
 
 function DiscoverList() {
 
   const [loading, setLoading] = useState(true)
-  const token = useSelector( state => state.auth.token)
-  const favoritesRedux = useSelector( state => state.favs?.favorites)
-  const movies = useSelector( (state) => state.mov?.movies)
-  const dispatch = useDispatch()
+  const token = useSelector( (state:state) => state.auth.token)
+  const favoritesRedux = useSelector( (state:state) => state.favs?.favorites)
+  const movies = useSelector( (state:state) => state.mov?.movies)
+  const dispatch = useAppDispatch()
   
   useEffect( () => {
-    dispatch(getDiscoveryList(favoritesRedux))
+    dispatch(discoveryList())
     setLoading(false)    
   }, [])
 

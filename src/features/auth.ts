@@ -40,7 +40,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout: (state, _) => {
+    logout: (state) => {
       state.token = initialState.token
     }
   },
@@ -64,7 +64,7 @@ export const authSlice = createSlice({
     })
     .addCase(login.rejected, (state, action) => {
       state.loading = false
-      state.error = "Error at login"
+      state.error = true
     })
   }
 })

@@ -5,9 +5,12 @@ import { useHistory } from 'react-router-dom'
 function Searcher() {
   const history = useHistory()
   
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:React.SyntheticEvent) => {
     e.preventDefault()
-    const inputValue = e.currentTarget.search.value.trim()
+    const currentTarget = e.currentTarget as typeof e.currentTarget & {
+      search: { value: string };
+    };
+    const inputValue = currentTarget.search.value.trim()
     if (inputValue.length === 0 ) {
       swal("El campo no puede estar vacio")
       return
@@ -16,7 +19,7 @@ function Searcher() {
       return
     } else{
       history.push(`/results?keyword=${inputValue}`)
-      e.currentTarget.search.value= " "
+      currentTarget.search.value= " "
     }
   }
 

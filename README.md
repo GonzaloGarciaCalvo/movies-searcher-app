@@ -1,9 +1,9 @@
 # Description
-Movie searcher REact JS app, with TMDB Rest Full Api.
+Movie searcher, Typescript React JS app, with TMDB Rest Full Api.
 Login with the same API. 
 Initial screen with recomendations. 
 It's possible add to favorites and remove from. 
-This app is based in the app from Alkemy Skills Up course, spleating and reusing code, implementing Redux and redux-persit library to sincronize localStorage with state manager.
+This app is based in the app from Alkemy Skills Up course, spleating and reusing code, implementing Redux-Toolkit and redux-persit library to sincronize localStorage with state manager.
 
 
 ## Libraries

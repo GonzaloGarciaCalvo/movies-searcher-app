@@ -12,15 +12,9 @@ import { RootState, useAppDispatch } from '../store';
 function Login() {
   const token = useSelector( (state:RootState) => state?.auth?.token)
   const dispatch = useAppDispatch()
-  /* const dispatch = useDispatch() */
-  const stateAll = useSelector(state => state)
-  console.log("en login")
-  console.log("token: ", token)
-  console.log("state en Login: ", stateAll)
+
   const onSubmit = (e:React.SyntheticEvent) => {
     e.preventDefault()
-    /* const email = e.target.email.value
-    const password = e.target.password.value */
     const target = e.target as typeof e.target & {
       email: { value: string };
       password: { value: string };
@@ -32,7 +26,6 @@ function Login() {
       return
     }
     if(emailRegEx.test(email) && passwordRegEx.test(password)){
-      /* dispatch(userLogin(e)) */
       dispatch(login())
     } else {
       swal("error en formato de campos");
@@ -41,11 +34,11 @@ function Login() {
   useEffect( () => {
     console.log("token del state en login", token)
   },[token])
-  //setTimeout(()=>console.log("token del state en login"),300)
+
   return (
     <>
       {token && <Redirect to="/listado" />}
-      <form onSubmit={onSubmit} className='logInForm'>
+      <form onSubmit={onSubmit} className='loginForm'>
         <label className='mt-4' htmlFor='email'>Email</label><input type="text" name='email' className='mt-1'/>
         <br />
         <label className='mt-4'>Password </label><input type="text" name='password' className='mt-1'/>

@@ -2,10 +2,9 @@ import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { baseUrl } from "../utilities/constants";
 import { movieType } from "../types/movie.type";
 
-
 export const discoveryList = createAsyncThunk(  
-  "auth/login",
-  async () => {
+  "mov/discoveryList",
+  async (asyncThunk) => {
     try {
       console.log("en discoveryList mov")
       const response = await fetch(
@@ -43,22 +42,15 @@ export const discoveryList = createAsyncThunk(
     reducers:{},
     extraReducers: builder => {
       builder
-      .addCase(discoveryList.pending, (state,action) => {
+      .addCase(discoveryList.pending, (state) => {
         state.loading = true
-        console.log("en discoveryList.pending")
       })
       .addCase(discoveryList.fulfilled, (state, action) => {
-        console.log("action.payload en discoveryList.fulfilled: ",action.payload)
         if (action.payload.error) {
-          /* state.error = action.payload.error.message */
-          state.error = true
+          console.log("error: ", action.payload.error)
         }
         state.loading = false
         state.movies = action.payload
-        console.log("en discoveryList.fulfilled")
-        console.log("payload: ", action.payload)
-        console.log("state mov en features: ", current(state))
-        console.log("state.movies: ", state.movies)
       })
       .addCase(discoveryList.rejected, (state, action) => {
         state.loading = false
@@ -67,5 +59,4 @@ export const discoveryList = createAsyncThunk(
     }
   })
 
-  /* export const {logout} = authSlice.actions; */
 export default movSlice.reducer

@@ -29,7 +29,7 @@ function Item({movie}:moviePropType) {
         : 
         <Card.Img variant="top" src={'fallback.jpg'} className='itemImg'/>
         }
-        { /* movie.isFav? */movieIsFav?
+        { movieIsFav?
           <Button variant='light' id='favorite-btn' onClick={(e)=>handleRemoveFav( movie)} data-movie-id={movie.id}>  
           ❤️ 
           </Button> :

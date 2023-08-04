@@ -6,17 +6,13 @@ import SpinnerLoading from './SpinnerLoading'
 import { useFetch } from './hooks/useFetch'
 import { state } from '../types/state.type'
 
-// This component is not implemented yet, 
+
 function ItemDateil() {
   const token = useSelector( (state:state) => state.auth.token)
   const query = new URLSearchParams(window.location.search)
   const movieId = query.get("movieId")
-  console.log("!!  IDC")
-  console.log("en IDC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
   const URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_API_KEY}`
   const {loading, error, data} = useFetch(URL, null)
-
 
   return (
     <>

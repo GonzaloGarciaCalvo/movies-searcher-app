@@ -1,5 +1,5 @@
 # Description
-Movie searcher, Typescript React JS app, with TMDB Rest Full Api.
+Movie searcher, Typescript React app, with TMDB Rest Full Api.
 Login with the same API. 
 Initial screen with recomendations. 
 It's possible add to favorites and remove from. 

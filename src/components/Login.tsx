@@ -43,7 +43,7 @@ function Login() {
   return (
     <>
       {token && <Redirect to="/listado" />}
-      <form onSubmit={onSubmit} className='logInForm'>
+      <form onSubmit={onSubmit} className='loginForm'>
         <label className='mt-4' htmlFor='email'>Email</label><input type="text" name='email' className='mt-1'/>
         <br />
         <label className='mt-4'>Password </label><input type="text" name='password' className='mt-1'/>

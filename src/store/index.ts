@@ -13,7 +13,7 @@ import storage from "redux-persist/lib/storage";
 import { authSlice/* , favsSlice, discoverySlice */ } from '../features/auth';
 import authReducer from '../features/auth'
 import favsReducer from '../features/favs'
-import movSliceReducer from '../features/mov'
+import movReducer from '../features/mov'
 import { useDispatch } from 'react-redux'
 
 export type AppDispatch = typeof store.dispatch
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({ // va configureStore
   auth: authReducer,
   /* auth:authSlice, */
   favs: favsReducer,
-  mov: movSliceReducer
+  mov: movReducer
 });
 
 const persistConfig = {

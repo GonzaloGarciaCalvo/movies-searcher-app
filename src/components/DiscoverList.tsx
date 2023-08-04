@@ -13,7 +13,7 @@ function DiscoverList() {
 
   const [loading, setLoading] = useState(true)
   const token = useSelector( (state:state) => state.auth.token)
-  const favoritesRedux = useSelector( (state:state) => state.favs?.favorites)
+  //const favoritesRedux = useSelector( (state:state) => state.favs?.favorites)
   const movies = useSelector( (state:state) => state.mov?.movies)
   const dispatch = useAppDispatch()
   

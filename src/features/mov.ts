@@ -13,7 +13,7 @@ export const discoveryList = createAsyncThunk(
       );
       const dataRes = await response.json()
       const dataMovies = await dataRes.results
-      console.log("data res en discoveryList: ", dataMovies)
+      //console.log("data res en discoveryList: ", dataMovies)
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }

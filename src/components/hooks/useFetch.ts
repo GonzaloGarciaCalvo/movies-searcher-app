@@ -13,7 +13,7 @@ export function useFetch (URL:string, dependenci:string|null) {
     const {signal} = controller
     async function getData(){
       try{
-        const response = await fetch(URL, {signal})
+        const response = await fetch(URL/* , {signal} */)
         const dataApi = await response.json()
         console.log("dataApi: ",dataApi)
           setData(dataApi)
@@ -26,9 +26,9 @@ export function useFetch (URL:string, dependenci:string|null) {
       }
     }
     const dataFromApi = getData()
-    return () => {
+    /* return () => {
       controller.abort()
-    }
+    } */
   }, [dependenci])
   return {loading, error, data}
 }

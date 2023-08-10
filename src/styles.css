@@ -32,19 +32,24 @@ a:hover {
   color: burlywood;
 }
 .logOutBtn {
-  position:absolute;
-  right: 0;
+  /* position:absolute;
+  right: 0; */
+  margin-right: 1.5em;
 }
 .favsQuantityIndicator {
   background-color: red;
   border-radius: 50%;
   font-size: 1em;
-  width: 1.3em;
-  height: 1.3em;
+  font-weight: 600;
+  width: 1.1em;
+  height: 1.1em;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  line-height: 1.1em;
+  padding:0 0px 2px 0;
+  /* transform: translateY(4px); */
 }
 
 /*////////////////////////////////////////*/
@@ -64,6 +69,7 @@ a:hover {
   padding:0.5em 0 0 0
 }
 .itemImg {
+  height: auto;
   min-height: 25em;
 }
 .goToItemDetailButton {
@@ -84,7 +90,7 @@ footer {
 /* SEARCHER   */
 #searchButton.btn {
   padding: 3px 8px 3px 8px;
-  margin: 1em;
+  margin: 1em 0 1em 1em;
 }
 
 .detailImg {
@@ -129,3 +135,16 @@ footer {
   height: 100%;
 }
 
+@media(max-width:576px) {
+  .container-fluid{
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+  .myCard {
+    min-height: 40em;
+  }
+  .itemImg {
+    min-height:unset;
+    height: auto;
+  }
+}

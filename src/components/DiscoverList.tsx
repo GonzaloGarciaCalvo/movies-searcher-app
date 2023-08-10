@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { state } from '../types/state.type'
 import { discoveryList } from '../features/mov'
 import { RootState, useAppDispatch } from '../store';
+import Searcher from './Searcher'
 
 function DiscoverList() {
 
@@ -19,12 +20,13 @@ function DiscoverList() {
     dispatch(discoveryList())
     setLoading(false)    
   }, [])
-  console.log("token en discoveliList: ", token)
-  console.log("movies", movies)
+  //console.log("token en discoveliList: ", token)
+  //console.log("movies", movies)
   return (
     <>
       {loading && <SpinnerLoading />}
       {!token && <Redirect to="/" />}
+      <Searcher />
       <div className='row listContainer'>
         { movies.length>0?
           movies.map(movie => <Item  key={movie.id} movie={movie}/>)

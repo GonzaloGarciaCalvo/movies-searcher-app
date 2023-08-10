@@ -1,11 +1,13 @@
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import Searcher from './Searcher'
-import { Button } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '../store'
 import { logout } from '../features/auth'
 import { resetFavs } from '../features/favs'
 import { state } from '../types/state.type'
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 
 
@@ -23,26 +25,26 @@ function Header() {
     <header>
       {
         token?
-          <nav className='d-flex flex-row justify-content-start align-items-center m-3 position-relative '>
-            <ul className='d-flex flex-row justify-content-start m-0'>
-              <li className='m-2'>
-                <NavLink activeStyle={{pointerEvents: 'none'}} to={'/'}>Home</NavLink>
-              </li>
-              <li className='m-2'>
-                <NavLink activeStyle={{pointerEvents: 'none'}} to={'/listado'}>Listado</NavLink>
-              </li>
-              <li className='m-2'> 
-                <Link to={'/favoritos'} className='d-flex flex-row'>
-                  Favoritos   
-                </Link>
-              </li>
-            </ul>
-                <p className='favsQuantityIndicator ms-0 me-2 my-0'>
+        <div className='d-flex flex-row justify-content-between align-items-center' >
+        <Navbar expand="lg" className='navbar-dark d-flex flex-row justify-content-between align-items-center m-3  '>
+          {/* <Container fluid> */}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" style={{color:'white'}}/>
+            <Navbar.Collapse /* className='d-flex flex-column flex-lg-row justify-content-center align-items-center' */>
+              <Nav.Link as={NavLink} className='m-2' /* activeStyle={{pointerEvents: 'none'}} */ to={'/'}>Home</Nav.Link>
+              <Nav.Link as={NavLink} /* activeStyle={{pointerEvents: 'none'}} */ to={'/listado'} className='m-2'>Listado</Nav.Link>        
+              <Nav.Link as={NavLink} to={'/categories'} className=' m-2'>
+                Categorias
+              </Nav.Link>    
+              <Nav.Link as={NavLink}  to={'/favoritos'} className='m-2 d-flex flex-row flex-align-center'>
+                Favoritos
+                <p className='favsQuantityIndicator m-1'>
                   {favoritesRedux.length}
                 </p>
-            <Searcher  />
-            <Button onClick={handleLogOut} className='btn-sm logOutBtn me-5' >Logout</Button>
-          </nav>
+              </Nav.Link>
+            </Navbar.Collapse>
+        </Navbar>
+        <Button onClick={handleLogOut} className='btn-sm logOutBtn' >Logout</Button>
+        </div>
         :
         <p className='text-center fs-4 mt-3'>Debes logearte para acceder a las películas</p>
       }

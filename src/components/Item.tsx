@@ -22,7 +22,7 @@ function Item({movie}:moviePropType) {
   const movieIsFav = favs?.find(item => item.id === movie.id)? true : false
 
   return (
-    <div className='col-3 p-2'>
+    <div className='col-12 col-sm-6 col-lg-3 p-2'>
       <Card className=" myCard" >
         {movie.poster_path? 
         <Card.Img variant="top" src={baseUrl+movie.poster_path} className='itemImg'/> 

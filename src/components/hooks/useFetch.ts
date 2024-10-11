@@ -7,7 +7,6 @@ export function useFetch (URL:string, dependenci:string|null) {
   const [ error, setError ] = useState<string | null>('')
   /* const [data , setData] = useState<searchType | movieDetail>({} as searchType | movieDetail) */
   const [data , setData] = useState<any>(null)
-  console.log("data en useFetch: ", data)
   useEffect( () => {
     const controller = new AbortController()
     const {signal} = controller
@@ -15,7 +14,6 @@ export function useFetch (URL:string, dependenci:string|null) {
       try{
         const response = await fetch(URL/* , {signal} */)
         const dataApi = await response.json()
-        console.log("dataApi: ",dataApi)
           setData(dataApi)
         } catch(error:any) {
             setError(error.message)

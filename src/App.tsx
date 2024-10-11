@@ -20,15 +20,11 @@ function App() {
   const favsRedux = useSelector( (state:state) => state.favs?.favorites)
   
   return (
-    <>
+    <div className='appContainter'>
         <Header />
         <main className="container-fluid">
           <Switch>
-            <Route exact path="/" component={Login} />
-            {/* <Route 
-              exact  path="/favoritos" 
-              render={(props) => <Favorites {...props} />}  // but don't have props
-            /> */}
+            <Route exact path="/" component={DiscoverList} />
             <Route exact  path="/favoritos" component={ Favorites} />
             <Route exact path="/listado" component={DiscoverList} />
             <Route path="/movie" component={ItemDateilContainer} />
@@ -37,7 +33,7 @@ function App() {
           </Switch>
         </main>
         <Footer />
-    </>
+    </div>
 	);
 }
 

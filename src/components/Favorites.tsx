@@ -7,12 +7,12 @@ import { RootState } from '../store'
 function Favorites() {
 
   const favoritesRedux = useSelector( (state:RootState) => state.favs.favorites)
-  const token = useSelector( (state:RootState) => state.auth.token)
+  /* const token = useSelector( (state:RootState) => state.auth.token) */
 
   return (
     <section>
-      {!token && <Redirect to={'/'} />}
-      <h1 className='m-4'>Favoritos</h1> 
+      {/* {!token && <Redirect to={'/'} />} */}
+      <h1 className='m-4 text-center title'>Favoritos</h1> 
       <div className='d-flex flex-row flex-wrap favoritesBox '>
         {favoritesRedux.length?
           favoritesRedux.map(item => <Item key={item.id} movie={item} />)

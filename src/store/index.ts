@@ -11,6 +11,7 @@ import storage from "redux-persist/lib/storage";
 import authReducer from '../features/auth'
 import favsReducer from '../features/favs'
 import movReducer from '../features/mov'
+import movByGenreReducer from '../features/movByGenre';
 import { useDispatch } from 'react-redux'
 
 export type AppDispatch = typeof store.dispatch
@@ -20,7 +21,8 @@ export const useAppDispatch: () => AppDispatch = useDispatch
 const rootReducer = combineReducers({ 
   auth: authReducer,
   favs: favsReducer,
-  mov: movReducer
+  mov: movReducer,
+  movByGenre: movByGenreReducer
 });
 export type RootState = ReturnType< typeof rootReducer >
 

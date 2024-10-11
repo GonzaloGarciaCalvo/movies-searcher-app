@@ -19,20 +19,25 @@ function Results() {
     }
   },[keyword])
   const {loading, error, data} = useFetch(URL, keyword)
-    console.log("EN RESULTS")
+
   return (
-    <section className='d-flex flex-row flex-wrap'>
-      {!keyword && <Redirect to={'/listado'} />}
-      { loading && <SpinnerLoading />}
+    <>
       <Searcher />
-      {
-        data?.results?.length>0? 
-          data?.results?.map((item:movieType) => <Item key={item.id} movie={item}  />)
-          :
-          <h1>No se encontró películas con esa palabra clave</h1>
-      }
+      <section className='d-flex flex-row flex-wrap '>
+        {/* {!keyword && <Redirect to={'/listado'} />} */}
+        { loading && <SpinnerLoading />}
+        {
+          data?.results?.length>0? 
+            data?.results?.map((item:movieType) => <Item key={item.id} movie={item}  />)
+            :
+            <div className='results'>
+              <h1>No se encontró películas con esa palabra clave</h1>
+            </div>
+        }
+      
+      </section>
     
-    </section>
+    </>
   )
 }
 

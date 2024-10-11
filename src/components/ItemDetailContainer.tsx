@@ -17,7 +17,7 @@ function ItemDateil() {
   return (
     <>
       {loading && <SpinnerLoading />}
-      {!token? <Redirect to="/" />:null}
+      {/* {!token? <Redirect to="/" />:null} */}
       { data && <ItemDetail movie={data} /> }
     </>
   )

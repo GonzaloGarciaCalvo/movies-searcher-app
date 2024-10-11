@@ -42,11 +42,13 @@ function Item({movie}:moviePropType) {
           <Card.Text>
             {movie.overview.substring(0,270)}
           </Card.Text>
-          <Button variant="primary btn-sm"  className='btn-sm goToItemDetailButton' >
-            <Link to={`/movie?movieId=${movie.id}`} className=' fs-6 p-0' >
-              Detail
-            </Link>
-          </Button>
+          <div className="d-flex justify-content-center">
+            <Button   className='btn-sm btn-secondary goToItemDetailButton ' >
+              <Link to={`/movie?movieId=${movie.id}`} className=' fs-6 p-0' >
+                Detail
+              </Link>
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </div>

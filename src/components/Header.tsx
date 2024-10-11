@@ -10,7 +10,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 
-
 function Header() {
   const dispatch = useAppDispatch()
   const history = useHistory()
@@ -21,33 +20,55 @@ function Header() {
     dispatch(resetFavs())
     history.push("./")
   }
+
+  type classNameType = {
+    isActive:Boolean
+  }
+
   return (
     <header>
-      {
-        token?
+      {/* {
+        token? */}
         <div className='d-flex flex-row justify-content-between align-items-center' >
-        <Navbar expand="lg" className='navbar-dark d-flex flex-row justify-content-between align-items-center m-3  '>
-          {/* <Container fluid> */}
+        <Navbar expand="lg" className='navbar-dark d-flex flex-row justify-content-between align-items-center m-0  '>
             <Navbar.Toggle aria-controls="basic-navbar-nav" style={{color:'white'}}/>
-            <Navbar.Collapse /* className='d-flex flex-column flex-lg-row justify-content-center align-items-center' */>
-              <Nav.Link as={NavLink} className='m-2' /* activeStyle={{pointerEvents: 'none'}} */ to={'/'}>Home</Nav.Link>
-              <Nav.Link as={NavLink} /* activeStyle={{pointerEvents: 'none'}} */ to={'/listado'} className='m-2'>Listado</Nav.Link>        
-              <Nav.Link as={NavLink} to={'/categories'} className=' m-2'>
+            <Navbar.Collapse >
+              <Nav.Link 
+                as={NavLink} 
+                to={'/listado'} 
+                className={`rounded-2 ${({ isActive }:classNameType ):string => isActive ? "active" : ""} baseLink
+                `}
+              >
+                Listado
+              </Nav.Link>     
+              <Nav.Link 
+                as={NavLink} 
+                to={'/categories'} 
+                className={` rounded-2${({ isActive }:classNameType ):string => isActive ? "active" : ""} baseLink
+                `}
+              >
                 Categorias
-              </Nav.Link>    
-              <Nav.Link as={NavLink}  to={'/favoritos'} className='m-2 d-flex flex-row flex-align-center'>
+              </Nav.Link>  
+              <Nav.Link 
+                as={NavLink} 
+                to={'/favoritos'} 
+                className={`rounded-2 ${({ isActive }:classNameType ):string => isActive ? "active" : ""} baseLink 
+                `}
+              >
+                <div className='d-flex flex-direction-row justify-content-center '>
                 Favoritos
-                <p className='favsQuantityIndicator m-1'>
+                <p className='favsQuantityIndicator ms-1 my-1'>
                   {favoritesRedux.length}
                 </p>
-              </Nav.Link>
+              </div>
+              </Nav.Link>  
             </Navbar.Collapse>
         </Navbar>
-        <Button onClick={handleLogOut} className='btn-sm logOutBtn' >Logout</Button>
+        {/* <Button onClick={handleLogOut} className='btn-sm logOutBtn' >Logout</Button> */}
         </div>
-        :
+        {/* :
         <p className='text-center fs-4 mt-3'>Debes logearte para acceder a las películas</p>
-      }
+      } */}
     </header>
   )
 }

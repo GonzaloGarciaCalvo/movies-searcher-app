@@ -13,7 +13,6 @@ export const login = createAsyncThunk(
   "auth/login",
   async (e) => {
     try {
-      console.log("en login auth ")
       const response = await fetch(`${baseUrl}/3/authentication/token/new`, {
       headers:{
         Authorization: `${import.meta.env.VITE_AUTH_KEY}`,
@@ -22,7 +21,6 @@ export const login = createAsyncThunk(
       });
       const dataRes = await response.json()
       const token = await dataRes.request_token
-      console.log("token en login auth: ", token)
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }

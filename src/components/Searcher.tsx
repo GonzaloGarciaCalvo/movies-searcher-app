@@ -29,7 +29,15 @@ function Searcher() {
 
   return (
     <>  
-    {
+      <form onSubmit={handleSubmit}   className='searcherForm align-items-center mx-2'>
+          <input 
+            type='text' 
+            name="search" 
+            placeholder='palabra clave' 
+            className='my-0 py-0' />
+          <Button className='btn-secondary'  type='submit' size='sm' id='searchButton'>Search</Button>
+        </form>
+    {/* {
       token?
       <form onSubmit={handleSubmit}   className='d-flex d-row  align-items-center mx-2'>
         <input 
@@ -41,7 +49,7 @@ function Searcher() {
       </form>
       :
       null
-    }
+    } */}
     </>
   )
 }

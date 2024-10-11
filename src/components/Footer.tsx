@@ -3,7 +3,7 @@
 function Footer() {
   return (
     <footer>
-      <p>Gonzalo Garcia Calvo</p>
+      <p className="p-1 m-0">Gonzalo Garcia Calvo</p>
     </footer>
   )
 }

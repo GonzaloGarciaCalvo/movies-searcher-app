@@ -10,8 +10,6 @@ function ItemDetail({movie}:propMovieDetail) {
 
   const genresList = movie.genres?.map(item => item.name).join(", ")
   const companiesList = movie.production_companies?.map( item => item.name).join(", ")
-  console.log("!! EN ID")
-  console.log("movie en Itemdetail: ", movie)
 
   return (
     <>

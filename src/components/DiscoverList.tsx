@@ -8,6 +8,7 @@ import { state } from '../types/state.type'
 import { discoveryList } from '../features/mov'
 import { RootState, useAppDispatch } from '../store';
 import Searcher from './Searcher'
+import { baseUrl } from '../utilities/constants'
 
 function DiscoverList() {
 
@@ -17,7 +18,7 @@ function DiscoverList() {
   const dispatch = useAppDispatch()
   
   useEffect( () => {
-    dispatch(discoveryList())
+    dispatch(discoveryList(`${baseUrl}/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`))
     setLoading(false)    
   }, [])
   //console.log("token en discoveliList: ", token)
@@ -25,7 +26,8 @@ function DiscoverList() {
   return (
     <>
       {loading && <SpinnerLoading />}
-      {!token && <Redirect to="/" />}
+      {/* {!token && <Redirect to="/" />} */}
+      <h1 className='title'>Buscador de películas</h1>
       <Searcher />
       <div className='row listContainer'>
         { movies.length>0?

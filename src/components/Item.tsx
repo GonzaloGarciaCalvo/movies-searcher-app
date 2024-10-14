@@ -1,15 +1,17 @@
 import { Card, Button } from "react-bootstrap";
 import { Link} from 'react-router-dom';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { addFavs, removeFavs } from "../features/favs";
 import { moviePropType, movieType } from "../types/movie.type";
-import { state } from "../types/state.type";
-
+import ES from '../utilities/dictionary-Es.json'
+import EN from '../utilities/dictionary-En.json'
+import { useCommonHooks } from "./hooks/useCommonHooks";
 
 function Item({movie}:moviePropType) {
 
   let baseUrl = `https://image.tmdb.org/t/p/w500/`
   const dispatch = useDispatch()
+  const {lang, favoritesRedux:favs} = useCommonHooks()
 
   const handleAddFav = (movie:movieType) => {
     dispatch(addFavs( movie))
@@ -17,8 +19,6 @@ function Item({movie}:moviePropType) {
   const handleRemoveFav= ( movie:movieType) => {
     dispatch(removeFavs( movie))
   }
-  const favs = useSelector( (state:state) => state.favs.favorites)
-
   const movieIsFav = favs?.find(item => item.id === movie.id)? true : false
 
   return (
@@ -45,7 +45,7 @@ function Item({movie}:moviePropType) {
           <div className="d-flex justify-content-center">
             <Button   className='btn-sm btn-secondary goToItemDetailButton ' >
               <Link to={`/movie?movieId=${movie.id}`} className=' fs-6 p-0' >
-                Detail
+                {lang === 'es' ? ES.item.button : EN.item.button}
               </Link>
             </Button>
           </div>

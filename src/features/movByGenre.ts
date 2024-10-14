@@ -27,11 +27,19 @@ export const moviesByGenreList = createAsyncThunk(
 
   export interface initialMovState {
     movies:movieType[];
+    genre:{
+      id:Number | null,
+      name:String
+    }
     loading:Boolean;
     error:Boolean
   }
   const initialState:initialMovState = {
     movies: [],
+    genre: {
+      id:null,
+      name:'' 
+    },
     loading:false,
     error:false,
   }
@@ -39,7 +47,11 @@ export const moviesByGenreList = createAsyncThunk(
   export const movByGenreSlice = createSlice({
     name: "movByGenre",
     initialState,
-    reducers:{},
+    reducers:{
+      setGlobalGenre: (state, action) => {
+        state.genre = action.payload
+      }
+    },
     extraReducers: builder => {
       builder
       .addCase(moviesByGenreList.pending, (state) => {
@@ -59,4 +71,5 @@ export const moviesByGenreList = createAsyncThunk(
     }
   })
 
+export const {setGlobalGenre} = movByGenreSlice.actions;
 export default movByGenreSlice.reducer

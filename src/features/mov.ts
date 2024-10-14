@@ -4,16 +4,16 @@ import { movieType } from "../types/movie.type";
 
 export const discoveryList = createAsyncThunk(  
   "mov/discoveryList",
-  async (url:string) => {
+  async (lang:string) => {
     try {
       console.log("en discoveryList mov")
-      const response = await fetch(url
-        /* `${baseUrl}/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc` */,
+      const response = await fetch(
+        `${baseUrl}/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&include_adult=true&include_video=false&language=${lang}&page=1&sort_by=popularity.desc`,
         /* {signal} */
       );
       const dataRes = await response.json()
       const dataMovies = await dataRes.results
-      console.log("data res en discoveryList: ", dataRes)
+      //console.log("data res en discoveryList: ", dataMovies)
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }

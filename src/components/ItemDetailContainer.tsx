@@ -5,15 +5,17 @@ import ItemDetail from './ItemDetail'
 import SpinnerLoading from './SpinnerLoading'
 import { useFetch } from './hooks/useFetch'
 import { state } from '../types/state.type'
+import { RootState } from '../store'
+import { useCommonHooks } from './hooks/useCommonHooks'
 
 
 function ItemDateil() {
-  const token = useSelector( (state:state) => state.auth.token)
   const query = new URLSearchParams(window.location.search)
   const movieId = query.get("movieId")
-  const URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_API_KEY}`
-  const {loading, error, data} = useFetch(URL, null)
-
+  const {lang} = useCommonHooks()
+  const URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_API_KEY}&language=${lang}`
+  const {loading, error, data} = useFetch(URL, lang)
+  
   return (
     <>
       {loading && <SpinnerLoading />}

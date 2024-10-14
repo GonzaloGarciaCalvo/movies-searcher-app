@@ -1,0 +1,18 @@
+{
+  "discovery":{"title": "Movies Searcher"},
+  "categories":{"title": "Categories"},
+  "favorites":{
+    "title": "Favorites",
+    "message": "You didn't select favorites"
+  },
+  "item":{"button": "Detail"},
+  "navbar": {
+    "List": "List",
+    "categories": "Categories",
+    "favorites": "Favorites"
+  },
+  "searcher": {
+    "placeholder": "Keyword",
+    "button": "Search"
+  }
+}

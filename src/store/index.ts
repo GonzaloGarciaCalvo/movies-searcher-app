@@ -12,6 +12,7 @@ import authReducer from '../features/auth'
 import favsReducer from '../features/favs'
 import movReducer from '../features/mov'
 import movByGenreReducer from '../features/movByGenre';
+import langReducer from '../features/lang';
 import { useDispatch } from 'react-redux'
 
 export type AppDispatch = typeof store.dispatch
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   favs: favsReducer,
   mov: movReducer,
-  movByGenre: movByGenreReducer
+  movByGenre: movByGenreReducer,
+  lang: langReducer,
 });
 export type RootState = ReturnType< typeof rootReducer >
 

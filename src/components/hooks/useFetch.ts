@@ -14,7 +14,7 @@ export function useFetch (URL:string, dependenci:string|null) {
       try{
         const response = await fetch(URL/* , {signal} */)
         const dataApi = await response.json()
-          setData(dataApi)
+        setData(dataApi)
         } catch(error:any) {
             setError(error.message)
             customSwalAlert() 

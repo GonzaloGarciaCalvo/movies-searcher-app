@@ -1,16 +1,15 @@
 import  Button  from 'react-bootstrap/Button'
 import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { state } from '../types/state.type'
+import ES from '../utilities/dictionary-Es.json'
+import EN from '../utilities/dictionary-En.json'
+import { useCommonHooks } from './hooks/useCommonHooks'
 
 function Searcher() {
-  const history = useHistory()
-  const token =  useSelector((state:state) => state.auth.token)
 
+  const {lang, history} = useCommonHooks()
   const handleSubmit = (e:React.SyntheticEvent) => {
     e.preventDefault()
-    
     const currentTarget = e.currentTarget as typeof e.currentTarget & {
       search: { value: string };
     };
@@ -33,9 +32,11 @@ function Searcher() {
           <input 
             type='text' 
             name="search" 
-            placeholder='palabra clave' 
+            placeholder={ lang === "es" ? ES.searcher.placeholder : EN.searcher.placeholder} 
             className='my-0 py-0' />
-          <Button className='btn-secondary'  type='submit' size='sm' id='searchButton'>Search</Button>
+          <Button className='btn-secondary'  type='submit' size='sm' id='searchButton'>
+            { lang === "es" ? ES.searcher.button : EN.searcher.button}
+          </Button>
         </form>
     {/* {
       token?

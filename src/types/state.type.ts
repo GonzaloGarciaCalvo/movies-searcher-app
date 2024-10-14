@@ -14,8 +14,13 @@ type mov = {
   loading:Boolean,
   error:Boolean
 }
+type lang = {
+  lang:string,
+}
 export interface state {
   auth:auth,
   favs: favs,
-  mov: mov
+  mov: mov,
+  movByGenre: mov,
+  lang: lang
 };

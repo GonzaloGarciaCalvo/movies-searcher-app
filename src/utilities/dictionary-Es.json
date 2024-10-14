@@ -1,0 +1,18 @@
+{
+  "discovery":{"title": "Buscador de películas"},
+  "categories":{"title": "Categorías"},
+  "favorites":{
+    "title": "Favoritos",
+    "message": "No seleccionaste favoritos"
+  },
+  "item":{"button": "Detalle"},
+  "navbar": {
+    "List": "Listado",
+    "categories": "Categorías",
+    "favorites": "Favoritos"
+  },
+  "searcher": {
+    "placeholder": "Palabra clave",
+    "button": "Buscar"
+  }
+}

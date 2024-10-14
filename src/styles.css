@@ -51,7 +51,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   line-height: 1em;
-  padding:0 0px 2px 0;
+  padding:0 0px 1px 0;
   /* transform: translateY(1px); */
 }
 
@@ -64,6 +64,32 @@ a:hover {
   padding:0.5em
 }
 
+.langSelect {
+  width: 4.7em;
+  height: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#dropdown-basic {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  border-width: 0;
+}
+
+.dropdown-menu {  
+  min-width: 4.7em;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.dropdown-item {
+  padding: 0.3em;
+}
+
 /*////////////////////////////////////////*/
 .listContainer{
   min-height: 65vh;
@@ -71,14 +97,17 @@ a:hover {
 
 /*** ITEM  ***/
 .myCard {
-  border: 1px solid wheat;
+  border: 2px solid wheat;
   margin-bottom: 2em;
-  padding: 0.7em;
+  /* padding: 0.7em; */
+  padding-bottom: 0.5em;
+
   color: black;
   min-height: 48em;
 }
 .card-body {
-  padding:0.5em 0 0 0
+  /* padding:0.5em 0 0 0 */
+  padding:0.5em 
 }
 .itemImg {
   height: auto;
@@ -107,8 +136,10 @@ footer {
 }
 
 #searchButton.btn {
-  padding: 3px 8px 3px 8px;
-  /* margin: 1em 0 1em 1em; */
+  padding-left:0.3em;
+  padding-right:0.3em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
   margin: 0 0 0 1em;
 }
 
@@ -118,15 +149,16 @@ footer {
 }
 
 #favorite-btn {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 11px;
+  right: 1px;
+  top: 1px;
   padding: 0;
   font-size: 15px;
 }
@@ -187,18 +219,6 @@ footer {
     height: auto;
   }
 }
-
-.title {
-  font-size: 4em;
-  background: #FFFFFF;
-  background: linear-gradient(to right, #FFFFFF, #C4DEF4, #d7c4f4, #f4c4e2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
-  animation: changingGradient 3s infinite linear  ;
-  
-  }
 
   .title {
     font-size: 4em;

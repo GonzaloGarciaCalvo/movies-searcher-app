@@ -1,4 +1,4 @@
-import React from 'react'
+
 import SpinnerLoading from './SpinnerLoading'
 import { propMovieDetail } from '../types/movieDetail.type'
 

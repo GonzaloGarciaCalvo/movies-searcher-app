@@ -1,5 +1,5 @@
 import swal from 'sweetalert'
-import { Redirect} from 'react-router-dom'
+import { Navigate} from 'react-router-dom'
 import { emailRegEx, passwordRegEx } from '../utilities/constants'
 import { useDispatch, useSelector } from 'react-redux';
 /* import { userLogin } from '../store/actions' */
@@ -37,7 +37,7 @@ function Login() {
 
   return (
     <>
-      {token && <Redirect to="/listado" />}
+      {token ? <Navigate to="/listado" replace /> : <p>Please log in</p>}
       <form onSubmit={onSubmit} className='loginForm'>
         <label className='mt-4' htmlFor='email'>Email</label><input type="text" name='email' className='mt-1'/>
         <br />

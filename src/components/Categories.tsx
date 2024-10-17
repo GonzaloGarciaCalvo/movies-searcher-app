@@ -17,7 +17,7 @@ const Categories = () => {
   const params = new URLSearchParams(window.location.search)
   const genreId = Number(params.get('genre'))
   const queryPage = Number(params.get('page')) || 1
-  const {lang, genre, movByGenre, history, dispatch} = useCommonHooks()
+  const {lang, genre, movByGenre, navigate, dispatch} = useCommonHooks()
   console.log("lang en Categories: ", lang)
   console.log("genre: ", genre)
   console.log("movByGenre: ", movByGenre)
@@ -29,7 +29,7 @@ const Categories = () => {
   useEffect(() => {
     if (genre) {
       dispatch(moviesByGenreList(MOVIES_BY_GENRE_URL+genre+`&language=${lang}&page=${page}`))
-      history.push({
+      navigate({
         pathname: window.location.pathname,
         search: `lang=${lang}&genre=${genre}&page=${page}`,
       });
@@ -37,7 +37,7 @@ const Categories = () => {
     if (genreId && !genre) {
       dispatch(moviesByGenreList(MOVIES_BY_GENRE_URL+genre+`&language=${lang}&page=${page}`))
       dispatch(setGlobalGenre(genreId))
-      history.push({
+      navigate({
         pathname: window.location.pathname,
         search: `lang=${lang}&genre=${genre}&page=${page}`,
       });
@@ -48,7 +48,7 @@ const Categories = () => {
   const nextPage = () => {
     setPage((prevPage) => prevPage + 1)
     dispatch(moviesByGenreList(MOVIES_BY_GENRE_URL+genre+`&language=${lang}&page=${page+1}`))
-    history.push({
+    navigate({
       pathname: window.location.pathname,
       search: `lang=${lang}&genre=${genre}&page=${page+1}`,
     });
@@ -58,10 +58,14 @@ const Categories = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 1))
     if (page > 1) {
       dispatch(moviesByGenreList(MOVIES_BY_GENRE_URL+genre+`&language=${lang}&page=${page-1}`))
-      history.push({
+      /* history.push({
         pathname: window.location.pathname,
         search: `lang=${lang}&genre=${genre}&page=${page-1}`,
-      });
+      }); */
+      navigate({
+        pathname: window.location.pathname,
+        search: `?lang=${lang}&genre=${genre}&page=${page - 1}`,
+      });  
     }
   };
 
@@ -72,7 +76,7 @@ const Categories = () => {
     dispatch(setGlobalGenre(genre))
     /* setGenre(genre.id) */
     params.set('category', `${genre.id}`)
-    history.push({
+  navigate({
       pathname: window.location.pathname,
       search: `lang=${lang}&genre=${genre.id}&page=${page}`,
     });

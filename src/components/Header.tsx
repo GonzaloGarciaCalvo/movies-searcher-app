@@ -1,11 +1,11 @@
-import { Link, NavLink, useHistory } from 'react-router-dom'
-import Searcher from './Searcher'
+import {  NavLink} from 'react-router-dom'
+/* import Searcher from './Searcher'
 import { Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '../store'
 import { logout } from '../features/auth'
 import { resetFavs } from '../features/favs'
-import { state } from '../types/state.type'
+import { state } from '../types/state.type' */
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { SelectLang } from './SelectLang'
@@ -40,6 +40,7 @@ function Header() {
                   to={'/listado'} 
                   className={`rounded-2 ${({ isActive }:classNameType ):string => isActive ? "active" : ""} baseLink
                   `}
+                  viewTransition
                 >
                   {lang === 'es' ? ES.navbar.List : EN.navbar.List}
                 </Nav.Link>     
@@ -48,6 +49,7 @@ function Header() {
                   to={'/categories'} 
                   className={` rounded-2${({ isActive }:classNameType ):string => isActive ? "active" : ""} baseLink
                   `}
+                  viewTransition
                 >
                   {lang === 'es' ? ES.navbar.categories : EN.navbar.categories}
                 </Nav.Link>  
@@ -56,6 +58,7 @@ function Header() {
                   to={'/favoritos'} 
                   className={`rounded-2 ${({ isActive }:classNameType ):string => isActive ? "active" : ""} baseLink 
                   `}
+                   viewTransition
                 >
                   <div className='d-flex flex-direction-row justify-content-center align-items-center '>
                   {lang === 'es' ? ES.navbar.favorites : EN.navbar.favorites}

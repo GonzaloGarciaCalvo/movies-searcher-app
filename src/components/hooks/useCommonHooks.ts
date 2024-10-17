@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '../../store'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 
 export function useCommonHooks() {
 
@@ -10,10 +10,11 @@ export function useCommonHooks() {
   const movByGenre = useSelector( (state:RootState) => state.movByGenre?.movies)
   const favoritesRedux = useSelector((state:RootState) => state.favs.favorites)
   const token =  useSelector((state:RootState) => state.auth.token)
-  const history = useHistory()
+  /* const history = useHistory() */
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   return (
-    {lang, genre, movies, movByGenre, favoritesRedux, token, history, dispatch}
+    {lang, genre, movies, movByGenre, favoritesRedux, token, navigate, dispatch}
   )
 }

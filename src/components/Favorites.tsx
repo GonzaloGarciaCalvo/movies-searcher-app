@@ -1,5 +1,5 @@
 import Item from './Item'
-import { Redirect, useHistory} from 'react-router-dom'
+/* import { Redirect, useHistory} from 'react-router-dom' */
 import { useSelector } from 'react-redux'
 import { state } from '../types/state.type'
 import { RootState } from '../store'
@@ -9,11 +9,11 @@ import { useEffect } from 'react'
 import { useCommonHooks } from './hooks/useCommonHooks'
 
 function Favorites() {
-
-  const {lang, movies, favoritesRedux, history, dispatch} = useCommonHooks()
+ console.log("en Favorites")
+  const {lang, movies, favoritesRedux, navigate, dispatch} = useCommonHooks()
 
   useEffect( () => {
-    history.push({
+    navigate({
       pathname: window.location.pathname,
       search: `lang=${lang}`,
     });

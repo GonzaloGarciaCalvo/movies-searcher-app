@@ -1,13 +1,13 @@
 import  Button  from 'react-bootstrap/Button'
 import swal from 'sweetalert'
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 import ES from '../utilities/dictionary-Es.json'
 import EN from '../utilities/dictionary-En.json'
 import { useCommonHooks } from './hooks/useCommonHooks'
 
 function Searcher() {
 
-  const {lang, history} = useCommonHooks()
+  const {lang, navigate} = useCommonHooks()
   const handleSubmit = (e:React.SyntheticEvent) => {
     e.preventDefault()
     const currentTarget = e.currentTarget as typeof e.currentTarget & {
@@ -20,8 +20,12 @@ function Searcher() {
     } else if (inputValue.length <= 3) {
       swal("El campo debe tener mas de 3 caracteres")
       return
-    } else {
-      history.push(`/results?keyword=${inputValue}`)
+    } else {    
+      navigate({
+        pathname: '/results',
+        search: `?keyword=${inputValue}`,
+      });
+      /* navigate(`/results?keyword=${inputValue}`) */
       currentTarget.search.value= " "
     }
   }

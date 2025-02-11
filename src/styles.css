@@ -52,7 +52,6 @@ a:hover {
   align-items: center;
   line-height: 1em;
   padding:0 0px 1px 0;
-  /* transform: translateY(1px); */
 }
 
 .active {
@@ -99,19 +98,19 @@ a:hover {
 .myCard {
   border: 2px solid wheat;
   margin-bottom: 2em;
-  /* padding: 0.7em; */
   padding-bottom: 0.5em;
 
   color: black;
   min-height: 48em;
 }
 .card-body {
-  /* padding:0.5em 0 0 0 */
   padding:0.5em 
 }
 .itemImg {
   height: auto;
   min-height: 25em;
+  aspect-ratio: 0.667;
+  object-fit: cover;
 }
 .goToItemDetailButton {
   position: absolute;
@@ -224,7 +223,6 @@ footer {
     font-size: 4em;
     font-weight: 500;
     margin-bottom: 0.4em;
-    /* background: linear-gradient(to right, #FFFFFF, #C4DEF4, #d7c4f4, #f4c4e2); */
     background: linear-gradient(to right, #FFFFFF, #9dbad3, #9d4a56);
     -webkit-background-clip: text;
     background-clip: text;

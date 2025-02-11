@@ -1,6 +1,6 @@
 import Item from './Item'
 import SpinnerLoading from './SpinnerLoading'
-import { Redirect } from 'react-router'
+//import { Redirect } from 'react-router'
 import { useFetch } from './hooks/useFetch'
 import { movieType } from '../types/movie.type'
 import { useState,useRef, useEffect } from 'react'

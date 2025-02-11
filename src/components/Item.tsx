@@ -1,5 +1,5 @@
 import { Card, Button } from "react-bootstrap";
-import { Link, NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import { addFavs, removeFavs } from "../features/favs";
 import { moviePropType, movieType } from "../types/movie.type";
@@ -24,10 +24,10 @@ function Item({movie}:moviePropType) {
 
   return (
     <motion.div
-    initial={{ opacity: 0, scale:0.5 }} 
+    /* initial={{ opacity: 0, scale:0.5 }} 
     animate={{ opacity: 1, scale:1 }} 
     exit={{ opacity: 0, scale:0.5 }} 
-    transition={{ease:"easeInOut", duration: 0.8 }}
+    transition={{ease:"easeInOut", duration: 0.8 }} */
       className='col-12 col-sm-6 col-lg-3 p-2'
     >
      {/* <div className='col-12 col-sm-6 col-lg-3 p-2'>  */}
